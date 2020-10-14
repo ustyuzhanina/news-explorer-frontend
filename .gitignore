@@ -1,0 +1,11 @@
+.DS_Store
+/node_modules
+/dist
+.vsls.json
+
+# Logs
+logs
+*.log
+
+# dotenv environment variables file
+.env

@@ -1,0 +1,59 @@
+{
+  "name": "news-explorer-frontend",
+  "version": "0.0.1",
+  "description": "Frontend for diploma news-explorer",
+  "main": "index.js",
+  "scripts": {
+    "build": "rimraf dist && cross-env NODE_ENV=production webpack --mode production",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --mode development --open --watch",
+    "deploy": "cross-env NODE_ENV=production gh-pages -d dist -r",
+    "deploy-server": "npm run build && scp -r ./dist/* ustyuzhanina@84.201.167.0:/home/ustyuzhanina/news-explorer-frontend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ustyuzhanina/news-explorer-frontend.git"
+  },
+  "author": "Elena Ustyuzhanina",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ustyuzhanina/news-explorer-frontend/issues"
+  },
+  "homepage": "https://github.com/ustyuzhanina/news-explorer-frontend#readme",
+  "devDependencies": {
+    "@babel/cli": "7.6.4",
+    "@babel/core": "7.6.4",
+    "@babel/preset-env": "7.6.3",
+    "babel-loader": "8.1.0",
+    "bem-tools-core": "0.0.3",
+    "bem-tools-create": "2.3.0",
+    "cross-env": "6.0.3",
+    "css-loader": "3.2.0",
+    "eslint": "7.11.0",
+    "eslint-config-airbnb-base": "14.2.0",
+    "eslint-plugin-import": "2.22.1",
+    "file-loader": "4.2.0",
+    "gh-pages": "3.1.0",
+    "html-webpack-plugin": "3.2.0",
+    "image-webpack-loader": "6.0.0",
+    "mini-css-extract-plugin": "0.8.0",
+    "optimize-css-assets-webpack-plugin": "5.0.3",
+    "postcss-loader": "3.0.0",
+    "style-loader": "1.0.0",
+    "webpack": "4.41.2",
+    "webpack-cli": "3.3.9",
+    "webpack-dev-server": "3.8.2",
+    "webpack-md5-hash": "0.0.6"
+  },
+  "dependencies": {
+    "autoprefixer": "9.8.5",
+    "babel-polyfill": "6.26.0",
+    "core-js": "3.1.4",
+    "font-awesome": "4.7.0",
+    "imagemin-pngquant": "9.0.1",
+    "pngquant-bin": "6.0.0",
+    "cssnano": "4.1.10"
+  },
+  "resolutions": {
+    "image-webpack-loader/imagemin-pngquant": "5.0.1"
+  }
+}
