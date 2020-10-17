@@ -11,12 +11,12 @@ const isDev = process.env.NODE_ENV === 'development';
 
 module.exports = {
   entry: {
-    main: './src/index.js',
+    index: './src/pages/index/index.js',
     articles: './src/pages/articles/index.js',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: './js/[name].[chunkhash].js',
+    filename: './js/[name]/[name].[chunkhash].js',
   },
   module: {
     rules: [
@@ -33,7 +33,7 @@ module.exports = {
             : {
               loader: MiniCssExtractPlugin.loader,
               options: {
-                publicPath: '../',
+                publicPath: '../../',
               },
             },
           {
@@ -111,7 +111,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       // Означает, что:
       inject: false, // стили НЕ нужно прописывать внутри тегов
-      hash: true,
       template: './src/index.html', // откуда брать образец для сравнения с текущим видом проекта
       filename: 'index.html', // имя выходного файла, то есть того, что окажется в папке dist после сборки
       chunks: [
@@ -121,11 +120,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       // Означает, что:
       inject: false, // стили НЕ нужно прописывать внутри тегов
-      hash: true,
-      template: './src/pages/articles/index.html', // откуда брать образец для сравнения с текущим видом проекта
-      filename: './pages/articles/index.html', // имя выходного файла, то есть того, что окажется в папке dist после сборки
+      template: './src/articles.html', // откуда брать образец для сравнения с текущим видом проекта
+      filename: 'articles.html', // имя выходного файла, то есть того, что окажется в папке dist после сборки
       chunks: [
-        'index',
+        'articles',
       ],
     }),
     new WebpackMd5Hash(),
