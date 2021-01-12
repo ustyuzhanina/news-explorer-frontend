@@ -1,0 +1,9 @@
+.navbar__link_underline {
+  border-bottom: 3px solid white;
+}
+
+@media (max-width: 600px) {
+  .navbar__link_underline {
+    border-bottom: none;
+  }
+}

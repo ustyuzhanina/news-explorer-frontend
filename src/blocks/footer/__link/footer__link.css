@@ -1,0 +1,7 @@
+.footer__link {
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  cursor: url(../../../images/cursor-lapka.png), pointer;
+  font-size: 18px;
+}

@@ -1,0 +1,54 @@
+@import url(./__data/card__data.css);
+@import url(./__description/card__description.css);
+@import url(./__cover/card__cover.css);
+@import url(./__image/card__image.css);
+@import url(./__source/card__source.css);
+@import url(./__title/card__title.css);
+@import url(./__info/card__info.css);
+@import url(./__item/card__item.css);
+@import url(./__keyword/card__keyword.css);
+@import url(./__icon/card__icon.css);
+@import url(./__icon/_bookmark/card__icon_bookmark.css);
+@import url(./__icon/_bookmark-marked/card__icon_bookmark-marked.css);
+@import url(./__icon/_bookmark/card__icon_bookmark_logged-out.css);
+@import url(./__icon/_trash/card__icon_trash.css);
+@import url(./__hint/card__hint.css);
+@import url(./__hint/_logged-out/card__hint_logged-out.css);
+@import url(./__hint/_trash/card__hint_trash.css);
+
+
+.card {
+  position: relative;
+  width: 400px;
+  height: 576px;
+  background-color: #fff;
+  overflow: hidden;
+  border-radius: 14px/14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);
+}
+
+
+@media screen and (max-width: 1280px) {
+  .card {
+    width: calc(400px * 0.8);
+    height: calc(576px * 0.8);
+  }
+}
+
+
+@media screen and (max-width: 920px) {
+  .card {
+    width: 224px;
+    height: 420px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .card {
+    width: 288px;
+    height: 440px;
+  }
+}

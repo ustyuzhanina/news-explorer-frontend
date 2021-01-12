@@ -2,6 +2,7 @@
 /node_modules
 /dist
 .vsls.json
+.bemrc.js
 
 # Logs
 logs

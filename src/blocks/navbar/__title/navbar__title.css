@@ -1,0 +1,26 @@
+.navbar__title {
+  margin: 0;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 24px;
+  color: #fff;
+  text-decoration: none;
+}
+
+@media (max-width: 1024px) {
+  .navbar__title {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar__title {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar__title {
+    display: block;
+  }
+}

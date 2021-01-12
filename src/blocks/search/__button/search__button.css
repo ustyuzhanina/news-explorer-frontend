@@ -1,0 +1,30 @@
+.search__button {
+  position: absolute;
+  color: #fff;
+  font-family: 'Roboto', arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  text-align: center;
+  font-size: 26px;
+  line-height: 30px;
+  right: -10px;
+  height: 56px;
+  width: 168px;
+}
+
+@media (max-width: 920px) {
+  .search__button {
+    width: 160px;
+    right: -10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .search__button {
+    position: unset;
+    margin: 20px auto 32px;
+    width: 288px;
+    font-size: 18px;
+    line-height: 24px;
+  }
+}

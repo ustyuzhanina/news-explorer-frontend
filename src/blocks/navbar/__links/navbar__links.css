@@ -1,0 +1,16 @@
+.navbar__links {
+  list-style: none;
+  display: flex;
+  align-items: baseline;
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 600px) {
+  .navbar__links {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    padding-top: 24px;
+  }
+}

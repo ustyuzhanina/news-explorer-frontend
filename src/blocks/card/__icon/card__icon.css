@@ -1,0 +1,9 @@
+.card__icon {
+  width: 40px;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  position: absolute;
+  z-index: 2;
+  cursor: url(../../../images/cursor-lapka.png), pointer;
+}

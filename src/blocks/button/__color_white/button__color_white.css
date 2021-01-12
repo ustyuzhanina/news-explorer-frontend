@@ -1,0 +1,37 @@
+.button__color_white {
+  background-color: #fff;
+  height: 64px;
+  border-radius: 80px;
+  box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);
+  color: inherit;
+  border: 1px;
+  margin: 64px auto 80px;
+  padding: 0 84px;
+  max-width: 288px;
+}
+
+.button__color_white:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 2px #000;
+}
+
+@media screen and (max-width: 1050px) {
+  .button__color_white {
+    height: 56px;
+    margin-top: 22px;
+    margin-bottom: 40px;
+    width: 31%;
+    text-align: center;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .button__color_white {
+    margin-top: 15px;
+    margin-bottom: 32px;
+    width: calc(100% - 32px);
+  }
+}

@@ -1,0 +1,30 @@
+.card__image {
+  object-fit: cover;
+  object-position: top center;
+  margin: 0;
+  padding: 0;
+  width: 400px;
+  height: 272px;
+}
+
+@media screen and (max-width: 1280px) {
+  .card__image {
+    width: calc(400px * 0.8);
+    height: calc(272px * 0.8);
+  }
+}
+
+
+@media screen and (max-width: 920px) {
+  .image {
+    width: 224px;
+    height: 150px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .card__image {
+    height: 196px;
+    width: 288px;
+  }
+}

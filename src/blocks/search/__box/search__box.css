@@ -1,0 +1,22 @@
+.search__box {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 64px;
+}
+
+@media (max-width: 920px) {
+  .search__box {
+    height: 56px;
+  }
+}
+
+@media (max-width: 768px) {
+  .search__box {
+    max-width: 452px;
+  }
+}

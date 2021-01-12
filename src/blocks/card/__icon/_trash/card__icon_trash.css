@@ -1,0 +1,13 @@
+.card__icon_trash {
+  background-image: url(../../../../images/icon-trash-normal-png.png);
+}
+
+.card__icon_trash:hover {
+  background-image: url(../../../../images/icon-trash-hover-png.png);
+  background-size: 24px;
+}
+
+.card__icon_trash:hover + .card__hint_trash {
+  display: flex;
+  align-items: center;
+}

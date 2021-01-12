@@ -1,0 +1,10 @@
+.popup__text-below {
+  color: #000000;
+  font-family: 'Inter';
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 17px;
+  text-align: center;
+  display: block;
+  margin: 16px auto 0;
+}

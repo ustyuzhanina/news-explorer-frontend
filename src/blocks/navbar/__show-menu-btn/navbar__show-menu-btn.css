@@ -1,0 +1,17 @@
+.navbar__show-menu-btn {
+  display: none;
+  height: 24px;
+  width: 24px;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar__show-menu-btn:hover {
+  cursor: url(../../../images/cursor-lapka.png), pointer;
+}
+
+@media (max-width: 600px) {
+  .navbar__show-menu-btn {
+    display: block;
+  }
+}

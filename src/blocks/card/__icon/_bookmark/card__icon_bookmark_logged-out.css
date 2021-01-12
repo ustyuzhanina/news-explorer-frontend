@@ -1,0 +1,4 @@
+.card__icon_bookmark_logged-out:hover+.card__hint_logged-out{
+  display: flex;
+  align-items: center;
+}

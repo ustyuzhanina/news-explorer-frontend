@@ -1,0 +1,20 @@
+
+.footer__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(100% - 208px);
+}
+
+@media screen and (max-width: 780px) {
+  .footer__container {
+    width: calc(100% - 80px);
+  }
+}
+
+@media screen and (max-width: 660px) {
+  .footer__container {
+    width: calc(100% - 32px);
+    align-items: flex-start;
+  }
+}
