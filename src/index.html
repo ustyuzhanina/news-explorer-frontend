@@ -14,10 +14,10 @@
   <main class="page">
     <header class="header">
 
-      <nav class="navbar">
+      <nav class="navbar navbar_opened">
         <div class="navbar__drop-down-menu">
           <a href="./" class="navbar__title">NewsExplorer</a>
-          <input class="navbar__show-menu-btn navbar__show-menu-btn_visible" type="image" src="<%=require('./images/menu-button-white-png.png')%>" alt="Кнопка вызова меню навигации по сайту">
+          <input class="navbar__show-menu-btn" type="image" src="<%=require('./images/menu-button-white-png.png')%>" alt="Кнопка вызова меню навигации по сайту">
           <!-- <input class="navbar__close-menu-btn" type="image" src="<%=require('./images/close-button-mobile.png')%>" alt="Кнопка закрытия меню навигации по сайту"></input> -->
         </div>
 
@@ -26,11 +26,11 @@
             <a href="./index.html" class="navbar__link-text">Главная</a>
           </li>
 
-          <li class="navbar__link navbar__link">
+          <li class="navbar__link">
             <a href="./articles.html" class="navbar__link-text">Сохранённые&nbsp;статьи</a>
           </li>
 
-          <li class="navbar__link navbar__link">
+          <li class="navbar__link">
             <button type="button" class="button navbar__btn_auth">Авторизоваться</button>
           </li>
         </ul>
@@ -39,7 +39,7 @@
 
       </nav>
 
-      <section class="search">
+      <!-- <section class="search">
         <h2 class="title-visually-hidden">Секция навигации по сайту и поиска новостей</h2>
 
 
@@ -54,7 +54,7 @@
         </form>
       </div>
 
-    </section>
+      </section> -->
 
     </header>
 

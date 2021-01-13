@@ -1,7 +1,9 @@
 export default (function () {
+  const navbarBtn = document.querySelector('.navbar__show-menu-btn');
   const searchBtn = document.querySelector('.search__button');
   const preloader = document.querySelector('.preloader');
   const notFoundSection = document.querySelector('.not-found');
+  const navbar = document.querySelector('.navbar');
 
   const popupEnter = document.querySelector('.popup_enter');
   const popupEnterCloseButton = popupEnter.querySelector('.popup__close');
@@ -18,7 +20,12 @@ export default (function () {
   const popupSuccessRegCloseButton = popupSuccessReg.querySelector('.popup__close');
   const popupSuccessRegGoToEnter = popupSuccessReg.querySelector('span.popup__input-link');
 
+  navbarBtn.addEventListener('click', () => {
+    navbar.classList.toggle('navbar_opened');
+  });
+
   popupEnterButton.addEventListener('click', () => {
+    navbar.classList.remove('navbar_opened');
     popupEnter.classList.toggle('popup_is-opened');
   });
 

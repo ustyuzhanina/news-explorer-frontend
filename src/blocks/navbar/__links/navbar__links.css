@@ -12,5 +12,9 @@
     align-items: flex-start;
     width: 100%;
     padding-top: 24px;
+    display: none;
+  }
+  .navbar_opened .navbar__links {
+    display: flex;
   }
 }
