@@ -14,7 +14,7 @@
   <main class="page">
     <header class="header">
 
-      <nav class="navbar navbar_opened">
+      <nav class="navbar">
         <div class="navbar__drop-down-menu">
           <a href="./" class="navbar__title">NewsExplorer</a>
           <input class="navbar__show-menu-btn" type="image" src="<%=require('./images/menu-button-white-png.png')%>" alt="Кнопка вызова меню навигации по сайту">
@@ -39,22 +39,21 @@
 
       </nav>
 
-      <!-- <section class="search">
+      <section class="search">
         <h2 class="title-visually-hidden">Секция навигации по сайту и поиска новостей</h2>
 
-
-      <div class="search__main-content">
-        <div class="search__text">
-          <h1 class="search__header">Что&nbsp;творится&nbsp;в мире?</h1>
-          <p class="search__description">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</p>
+        <div class="search__main-content">
+          <div class="search__text">
+            <h1 class="search__header">Что&nbsp;творится&nbsp;в мире?</h1>
+            <p class="search__description">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</p>
+          </div>
+          <form class="search__box">
+            <input class="search__bar" id="search" type="text" placeholder="Введите тему новости" required>
+            <button type="submit" class="button button__color_blue search__button">Искать</button>
+          </form>
         </div>
-        <form class="search__box">
-          <input class="search__bar" id="search" type="text" placeholder="Введите тему новости" required>
-          <button type="submit" class="button button__color_blue search__button">Искать</button>
-        </form>
-      </div>
 
-      </section> -->
+      </section>
 
     </header>
 

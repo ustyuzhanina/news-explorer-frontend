@@ -26,12 +26,14 @@ export default (function () {
 
   popupEnterButton.addEventListener('click', () => {
     navbar.classList.remove('navbar_opened');
+    navbarBtn.style.display = 'none';
     popupEnter.classList.toggle('popup_is-opened');
   });
 
   function closePopup() {
     const openPopup = event.target.closest('.popup');
     openPopup.classList.toggle('popup_is-opened');
+    navbarBtn.style.display = 'block';
   }
 
   popupEnterCloseButton.addEventListener('click', closePopup);
@@ -48,9 +50,14 @@ export default (function () {
     function toggleSuccessPopup() {
       popupSuccessReg.classList.toggle('popup_is-opened');
     }
+    function showNavbarBtn() {
+      navbarBtn.style.display = 'block';
+    }
     popupRegister.classList.toggle('popup_is-opened');
+    navbarBtn.style.display = 'none';
     toggleSuccessPopup();
     setTimeout(toggleSuccessPopup, 3000);
+    setTimeout(showNavbarBtn, 3001);
   });
 
   popupEnterGoToRegister.addEventListener('click', () => {

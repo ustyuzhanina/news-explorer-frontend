@@ -6,9 +6,16 @@
   cursor: pointer;
 }
 
+@media (max-width: 600px) {
+  .popup__close {
+    top: -40px;
+    right: -13px;
+  }
+}
+
 @media (max-width: 425px) {
   .popup__close {
-    top: -38px;
-    right: 10px;
+    top: -40px;
+    right: 13px;
   }
 }
