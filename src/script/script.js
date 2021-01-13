@@ -59,6 +59,12 @@ export default (function () {
     popupEnter.classList.toggle('popup_is-opened');
   });
 
+  popupSuccessRegGoToEnter.addEventListener('click', () => {
+    event.preventDefault();
+    popupSuccessReg.classList.toggle('popup_is-opened');
+    popupEnter.classList.toggle('popup_is-opened');
+  });
+
   searchBtn.addEventListener('click', () => {
     function showNoResults() {
       function clearup() {
