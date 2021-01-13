@@ -4,14 +4,10 @@
 @import url(./__icon/footer__icon.css);
 @import url(./__link-container/footer__link-container.css);
 @import url(./__link/footer__link.css);
-@import url(./__link/_index-page/footer__link_index-page.css);
-@import url(./__link/_yandex-praktikum/footer__link_yandex-praktikum.css);
 @import url(./__social-networks/footer__social-networks.css);
 @import url(./__icon/footer__icon.css);
 @import url(./__icon/_facebook/footer__icon_facebook.css);
 @import url(./__icon/_git/footer__icon_git.css);
-
-
 .footer {
   font-family: 'Roboto', arial, sans-serif;
   display: flex;
@@ -23,7 +19,6 @@
   padding-bottom: 22px;
   width: 100%;
 }
-
 
 @media screen and (max-width: 550px) {
   .footer {

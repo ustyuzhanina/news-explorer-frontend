@@ -1,6 +1,7 @@
 .footer__container-column {
   display: flex;
   justify-content: space-between;
+  flex-direction: row;
 }
 
 @media screen and (max-width: 550px) {

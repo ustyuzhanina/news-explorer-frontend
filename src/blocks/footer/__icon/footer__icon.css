@@ -1,6 +1,5 @@
 .footer__icon {
-  display: flex;
-  align-items: center;
   height: 20px;
   width: 21px;
+  cursor: url(../../../images/cursor-lapka.png), pointer;
 }
