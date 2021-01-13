@@ -20,3 +20,11 @@
     max-width: 452px;
   }
 }
+
+@media (max-width: 600px) {
+  .search__box {
+    min-height: 128px;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+}

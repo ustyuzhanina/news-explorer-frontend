@@ -18,7 +18,6 @@ export default (function () {
   const popupSuccessRegCloseButton = popupSuccessReg.querySelector('.popup__close');
   const popupSuccessRegGoToEnter = popupSuccessReg.querySelector('span.popup__input-link');
 
-
   popupEnterButton.addEventListener('click', () => {
     popupEnter.classList.toggle('popup_is-opened');
   });

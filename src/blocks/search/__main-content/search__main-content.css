@@ -17,7 +17,6 @@
 
 @media (max-width: 1024px) {
   .search__main-content {
-    margin: 0 auto;
     width: 57%;
   }
 }
@@ -32,6 +31,6 @@
 
 @media (max-width: 600px) {
   .search__main-content {
-    margin: 0 auto;
+    padding: 45px 0 0;
   }
 }

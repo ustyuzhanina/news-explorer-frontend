@@ -39,7 +39,8 @@
 
 @media (max-width: 600px) {
   .search {
-    height: calc(100% - 56px);
-    padding: 86px 0;
+    /* height: calc(100% - 56px); */
+    height: 100%;
+    padding: 56px 0 32px;
   }
 }
