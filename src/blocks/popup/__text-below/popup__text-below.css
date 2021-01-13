@@ -8,3 +8,9 @@
   display: block;
   margin: 16px auto 0;
 }
+
+.popup_success-reg .popup__text-below {
+  text-align: left;
+  font-size: 18px;
+  line-height: 22px;
+}

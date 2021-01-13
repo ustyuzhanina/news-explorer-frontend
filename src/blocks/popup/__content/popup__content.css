@@ -9,6 +9,11 @@
   padding: 34px 36px 28px;
 }
 
+.popup_success-reg .popup__content {
+  min-height: 182px;
+  padding: 43px 36px 51px;
+}
+
 @media screen and (max-width: 540px) {
   .popup__content {
     width: calc(100% - 60px);
