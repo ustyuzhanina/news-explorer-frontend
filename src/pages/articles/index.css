@@ -13,6 +13,7 @@
 @import url(../../blocks/cards/cards.css);
 @import url(../../blocks/logout-icon/logout-icon.css);
 @import url(../../blocks/intro/intro.css);
+@import url(../../blocks/popup/popup.css);
 html, body {
   margin: 0;
   padding: 0;

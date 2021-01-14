@@ -17,8 +17,7 @@
       <nav class="navbar">
         <div class="navbar__drop-down-menu">
           <a href="./" class="navbar__title">NewsExplorer</a>
-          <input class="navbar__show-menu-btn" type="image" src="<%=require('./images/menu-button-white-png.png')%>" alt="Кнопка вызова меню навигации по сайту">
-          <!-- <input class="navbar__close-menu-btn" type="image" src="<%=require('./images/close-button-mobile.png')%>" alt="Кнопка закрытия меню навигации по сайту"></input> -->
+          <button type="button" class="navbar__show-menu-btn"></button>
         </div>
 
         <ul class="navbar__links">
@@ -32,6 +31,7 @@
 
           <li class="navbar__link">
             <button type="button" class="button navbar__btn_auth">Авторизоваться</button>
+            <button type="button" class="button navbar__btn_logout"><img src="<%=require('./images/logout-icon.svg')%>" alt="Иконка с символом выхода" class="logout-icon"></button>
           </li>
         </ul>
 

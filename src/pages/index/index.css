@@ -10,7 +10,6 @@
 @import url(../../blocks/footer/footer.css);
 @import url(../../blocks/card/card.css);
 @import url(../../blocks/cards-list/cards-list.css);
-@import url(../../blocks/footer/footer.css);
 @import url(../../blocks/search-results/search-results.css);
 @import url(../../blocks/search/search.css);
 @import url(../../blocks/popup/popup.css);
@@ -19,6 +18,7 @@
 @import url(../../blocks/not-found/not-found.css);
 @import url(../../blocks/content/content.css);
 @import url(../../blocks/cards/cards.css);
+@import url(../../blocks/logout-icon/logout-icon.css);
 html, body {
   margin: 0;
   padding: 0;
