@@ -1,6 +1,7 @@
 .page {
-  max-width: 1440px;
-  margin: 0 auto;
+  width: 100%;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
   position: relative;
   min-height: 100vh;

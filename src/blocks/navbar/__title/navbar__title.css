@@ -7,6 +7,10 @@
   text-decoration: none;
 }
 
+.navbar__title_color_black {
+  color: #1A1B22;
+}
+
 @media (max-width: 1024px) {
   .navbar__title {
     font-size: 20px;

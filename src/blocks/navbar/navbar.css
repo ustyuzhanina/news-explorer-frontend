@@ -6,6 +6,7 @@
 @import url(./__link-text/navbar__link-text.css);
 @import url(./__btn_auth/navbar__btn_auth.css);
 @import url(./__drop-down-menu/navbar__drop-down-menu.css);
+@import url(./__btn_logout/navbar__btn_logout.css);
 .navbar {
   display: flex;
   flex-direction: row;

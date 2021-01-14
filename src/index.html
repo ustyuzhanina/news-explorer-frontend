@@ -11,7 +11,7 @@
 </head>
 <body>
 
-  <main class="page">
+  <div class="page">
     <header class="header">
 
       <nav class="navbar">
@@ -57,106 +57,110 @@
 
     </header>
 
-    <!-- ПРЕЛОАДЕР ГОТОВ! -->
-    <section class="preloader">
-      <h2 class="title-visually-hidden">Подождите, идет поиск новостей согласно заданному ключевому слову</h2>
-      <span class="preloader__circle"></span>
-      <p class="preloader__text">Идет поиск новостей...</p>
-    </section>
+    <main class="content">
 
-    <!-- Секция НИЧЕГО НЕ НАЙДЕНО готова! -->
-    <section class="not-found">
-      <img class="not-found__image" src="<%=require('./images/not-found-png.png')%>" alt="Изображение человека, разводящего руками, так как он не смог ничего найти">
-      <h2 class="not-found__header">Ничего не найдено</h2>
-      <p class="not-found__description">К сожалению по вашему запросу ничего не найдено.</p>
-    </section>
+      <!-- ПРЕЛОАДЕР ГОТОВ! -->
+      <section class="preloader">
+        <h2 class="title-visually-hidden">Подождите, идет поиск новостей согласно заданному ключевому слову</h2>
+        <span class="preloader__circle"></span>
+        <p class="preloader__text">Идет поиск новостей...</p>
+      </section>
 
-    <!-- СЕКЦИЯ search-results ГОТОВА! -->
-    <section class="search-results">
-      <h2 class="title search-results__title">Результаты поиска</h2>
+      <!-- Секция НИЧЕГО НЕ НАЙДЕНО готова! -->
+      <section class="not-found">
+        <img class="not-found__image" src="<%=require('./images/not-found-png.png')%>" alt="Изображение человека, разводящего руками, так как он не смог ничего найти">
+        <h2 class="not-found__header">Ничего не найдено</h2>
+        <p class="not-found__description">К сожалению по вашему запросу ничего не найдено.</p>
+      </section>
 
-      <div class="cards-list">
+      <!-- СЕКЦИЯ search-results ГОТОВА! -->
+      <section class="search-results">
+        <h2 class="title search-results__title">Результаты поиска</h2>
 
-        <article class="card">
-          <div class="card__cover">
-            <img src="<%=require('./images/article-image-1.jpg')%>" alt="Фотография лиственных растений лилового цвета" class="card__image">
-            <button class="card__item card__icon card__icon_bookmark card__icon_bookmark_logged-out"></button>
-            <button class="card__item card__hint card__hint_logged-out"></button>
-          </div>
-          <div class="card__description">
-            <time class="card__data" datetime="2019-08-02">2 августа, 2019</time>
-            <h2 class="card__title">Национальное достояние – парки</h2>
-            <p class="card__info">
-              В 2016 году Америка отмечала важный юбилей: сто лет назад
-              здесь начала складываться система национальных парков – охраняемых территорий,
-              где и сегодня каждый может приобщиться к природе.
-            </p>
-          </div>
-          <h3 class="card__source">ЛЕНТА.РУ</h3>
-        </article>
+        <div class="cards-list">
 
-        <article class="card">
-          <div class="card__cover">
-            <img src="<%=require('./images/article-image-2.jpg')%>" alt="Фотография зарослей кустарника" class="card__image">
-            <button class="card__item card__icon card__icon_bookmark"></button>
-            <button class="card__item card__hint"></button>
-          </div>
-          <div class="card__description">
-            <time class="card__data" datetime="2019-08-02">2 августа, 2019</time>
-            <h2 class="card__title">Лесные огоньки: история одной фотографии</h2>
-            <p class="card__info">
-              Фотограф отвлеклась от освещения суровой политической реальности Мексики,
-              чтобы запечатлеть ускользающую красоту одного из местных чудес природы.
-            </p>
-          </div>
-          <h3 class="card__source">МЕДУЗА</h3>
-        </article>
+          <article class="card">
+            <div class="card__cover">
+              <img src="<%=require('./images/article-image-1.jpg')%>" alt="Фотография лиственных растений лилового цвета" class="card__image">
+              <button class="card__item card__icon card__icon_bookmark card__icon_bookmark_logged-out"></button>
+              <button class="card__item card__hint card__hint_logged-out"></button>
+            </div>
+            <div class="card__description">
+              <time class="card__data" datetime="2019-08-02">2 августа, 2019</time>
+              <h2 class="card__title">Национальное достояние – парки</h2>
+              <p class="card__info">
+                В 2016 году Америка отмечала важный юбилей: сто лет назад
+                здесь начала складываться система национальных парков – охраняемых территорий,
+                где и сегодня каждый может приобщиться к природе.
+              </p>
+            </div>
+            <h3 class="card__source">ЛЕНТА.РУ</h3>
+          </article>
 
-        <article class="card">
-          <div class="card__cover">
-            <img src="<%=require('./images/article-image-3.jpg')%>" alt="Фотография дерева с мелкими круглыми листьями" class="card__image">
-            <button class="card__item card__icon card__icon_bookmark-marked"></button>
-            <button class="card__item card__hint"></button>
-          </div>
-          <div class="card__description">
-            <time class="card__data" datetime="2019-08-02">2 августа, 2019</time>
-            <h2 class="card__title">«Первозданная тайга»: новый фотопроект Игоря Шпиленка</h2>
-            <p class="card__info">
-              Знаменитый фотограф снимает первозданные леса России,
-              чтобы рассказать о необходимости их сохранения. В этот раз он отправился
-              в Двинско-Пинежскую тайгу, где...
-            </p>
-          </div>
-          <h3 class="card__source">РИА</h3>
-        </article>
+          <article class="card">
+            <div class="card__cover">
+              <img src="<%=require('./images/article-image-2.jpg')%>" alt="Фотография зарослей кустарника" class="card__image">
+              <button class="card__item card__icon card__icon_bookmark"></button>
+              <button class="card__item card__hint"></button>
+            </div>
+            <div class="card__description">
+              <time class="card__data" datetime="2019-08-02">2 августа, 2019</time>
+              <h2 class="card__title">Лесные огоньки: история одной фотографии</h2>
+              <p class="card__info">
+                Фотограф отвлеклась от освещения суровой политической реальности Мексики,
+                чтобы запечатлеть ускользающую красоту одного из местных чудес природы.
+              </p>
+            </div>
+            <h3 class="card__source">МЕДУЗА</h3>
+          </article>
 
-      </div>
+         <article class="card">
+            <div class="card__cover">
+              <img src="<%=require('./images/article-image-3.jpg')%>" alt="Фотография дерева с мелкими круглыми листьями" class="card__image">
+              <button class="card__item card__icon card__icon_bookmark-marked"></button>
+              <button class="card__item card__hint"></button>
+            </div>
+            <div class="card__description">
+              <time class="card__data" datetime="2019-08-02">2 августа, 2019</time>
+              <h2 class="card__title">«Первозданная тайга»: новый фотопроект Игоря Шпиленка</h2>
+              <p class="card__info">
+                Знаменитый фотограф снимает первозданные леса России,
+                чтобы рассказать о необходимости их сохранения. В этот раз он отправился
+                в Двинско-Пинежскую тайгу, где...
+              </p>
+            </div>
+            <h3 class="card__source">РИА</h3>
+          </article>
 
-      <button class="button button__color_white">Показать еще</button>
+        </div>
 
-    </section>
+        <button class="button button__color_white">Показать еще</button>
 
-    <!-- СЕКЦИЯ -об авторе- ГОТОВА! -->
-    <section class="author">
-      <h2 class="title-visually-hidden">Несколько слов об авторе сайта</h2>
-      <picture>
-        <source media="(max-width: 928px)" srcset="<%=require('./images/author-photo-medium.jpg')%>"/>
-        <img src="<%=require('./images/author-photo-large.jpg')%>" class="author__avatar" alt="Разработчик сайта">
-      </picture>
-      <div class="author__about">
-        <h2 class="author__title">Об авторе</h2>
-        <p class="author__description">Добрый день!</p>
-        <p class="author__description">
-          Меня зовут Елена Устюжанина. На данный момент я начинающий специалист в веб-разработке и приближаюсь к завершению обучения в Яндекс.Практикуме https://praktikum.yandex.ru/.
-        </p>
-        <p class="author__description">
-          За прошедшие месяцы обучения успела изучить верстку с использованием HTML5, CSS3. Реализовала проекты с нативным Javascript ES6, RegExp. Подключила сайт к API. И освоила основы работы с командной строкой в терминале, настройкой Webpack и работой с GitHub и GitHub Pages.
-        </p>
-        <p class="author__description">
-          С удовольствием учусь новому и умею организовывать себя и свое рабочее время.
-        </p>
-      </div>
-    </section>
+      </section>
+
+      <!-- СЕКЦИЯ -об авторе- ГОТОВА! -->
+      <section class="author">
+        <h2 class="title-visually-hidden">Несколько слов об авторе сайта</h2>
+        <picture>
+          <source media="(max-width: 928px)" srcset="<%=require('./images/author-photo-medium.jpg')%>"/>
+          <img src="<%=require('./images/author-photo-large.jpg')%>" class="author__avatar" alt="Разработчик сайта">
+        </picture>
+        <div class="author__about">
+          <h2 class="author__title">Об авторе</h2>
+          <p class="author__description">Добрый день!</p>
+          <p class="author__description">
+            Меня зовут Елена Устюжанина. На данный момент я начинающий специалист в веб-разработке и приближаюсь к завершению обучения в Яндекс.Практикуме https://praktikum.yandex.ru/.
+          </p>
+          <p class="author__description">
+            За прошедшие месяцы обучения успела изучить верстку с использованием HTML5, CSS3. Реализовала проекты с нативным Javascript ES6, RegExp. Подключила сайт к API. И освоила основы работы с командной строкой в терминале, настройкой Webpack и работой с GitHub и GitHub Pages.
+          </p>
+          <p class="author__description">
+            С удовольствием учусь новому и умею организовывать себя и свое рабочее время.
+          </p>
+        </div>
+      </section>
+
+    </main>
 
 <!-- СЕКЦИЯ FOOTER ГОТОВА! -->
     <footer class="footer">
@@ -239,7 +243,7 @@
     </div>
   </div>
 
-  </main>
+</div>
 
   <script src="<%= htmlWebpackPlugin.files.chunks.index.entry%>"></script>
 </body>

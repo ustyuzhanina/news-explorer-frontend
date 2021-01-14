@@ -1,0 +1,29 @@
+.navbar__btn_logout {
+  border: 1px solid #1A1B22;
+  border-radius: 20px;
+  background: none;
+  color: #1A1B22;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-style: normal;
+  font-weight: 300;
+  padding: 7px 14px;
+  box-shadow: none;
+  display: flex;
+}
+
+.navbar__btn_logout:hover {
+  box-shadow: 0 1px 1px 1px#1A1B22;
+}
+
+@media (max-width: 600px) {
+  .navbar__btn_logout {
+    padding: 11px 14px;
+    border-radius: 24px;
+  }
+  .navbar__btn_logout:hover {
+    box-shadow: none;
+    border: 2px solid #1A1B22;
+  }
+}

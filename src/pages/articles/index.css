@@ -1,5 +1,6 @@
 @import url(../../vendor/normalize.css);
 @import url(../../vendor/fonts.css);
+@import url(../../blocks/title-visually-hidden/title-visually-hidden.css);
 @import url(../../blocks/button/button.css);
 @import url(../../blocks/header/header.css);
 @import url(../../blocks/page/page.css);
@@ -8,6 +9,9 @@
 @import url(../../blocks/card/card.css);
 @import url(../../blocks/cards-list/cards-list.css);
 @import url(../../blocks/footer/footer.css);
+@import url(../../blocks/content/content.css);
+@import url(../../blocks/cards/cards.css);
+@import url(../../blocks/logout-icon/logout-icon.css);
 html, body {
   margin: 0;
   padding: 0;

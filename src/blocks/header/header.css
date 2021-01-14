@@ -12,9 +12,19 @@
   overflow: hidden;
 }
 
+.header_theme_white {
+  background: none;
+  background-color: #FFF;
+  height: 80px;
+}
+
 @media (max-width: 920px) {
   .header {
     height: 576px;
+  }
+
+  .header_theme_white {
+    height: 66px;
   }
 }
 
@@ -23,11 +33,23 @@
     height: 400px;
     background-image: url('../../images/main-page-pic-768.jpg');
   }
+
+  .header_theme_white {
+    background: none;
+    background-color: #FFF;
+    height: 56px;
+  }
 }
 
 @media (max-width: 320px) {
   .header {
     height: 536px;
     background-image: url('../../images/main-page-pic-mobile.jpg');
+  }
+
+  .header_theme_white {
+    background: none;
+    background-color: #FFF;
+    height: 56px;
   }
 }
