@@ -4,8 +4,8 @@
   flex-direction: row;
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 660px) {
   .footer__container-column {
-    flex-direction: column-reverse;
+    width: 100%;
   }
 }

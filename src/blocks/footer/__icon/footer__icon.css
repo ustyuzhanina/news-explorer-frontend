@@ -2,4 +2,9 @@
   height: 20px;
   width: 21px;
   cursor: url(../../../images/cursor-lapka.png), pointer;
+  margin-right: 24px;
+}
+
+.footer__icon:last-of-type {
+  margin-right: 0;
 }

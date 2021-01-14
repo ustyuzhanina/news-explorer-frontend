@@ -1,6 +1,6 @@
 .footer__container {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   width: calc(100% - 208px);
 }
@@ -8,6 +8,12 @@
 @media screen and (max-width: 950px) {
   .footer__container {
     width: calc(100% - 80px);
+  }
+}
+
+@media screen and (max-width: 786px) {
+  .footer__container {
+    align-items: baseline;
   }
 }
 
