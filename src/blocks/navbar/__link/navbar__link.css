@@ -27,9 +27,14 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .navbar__link {
     height: 56px;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar__link {
     margin: 0 0 16px;
     width: 100%;
   }

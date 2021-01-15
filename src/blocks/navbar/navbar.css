@@ -34,9 +34,14 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .navbar {
     height: 56px;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar {
     padding: 17px 4vw;
     flex-direction: column;
     justify-content: flex-start;

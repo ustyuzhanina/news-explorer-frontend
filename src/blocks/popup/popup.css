@@ -27,6 +27,6 @@
 @media (max-width: 600px) {
   .popup {
     align-items: flex-start;
-    top: 55px;
+    padding-top: 56px;
   }
 }
