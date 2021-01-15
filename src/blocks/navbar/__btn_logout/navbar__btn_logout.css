@@ -1,8 +1,8 @@
 .navbar__btn_logout {
-  border: 1px solid #1A1B22;
+  border: 1px solid white;
   border-radius: 20px;
   background: none;
-  color: #1A1B22;
+  color: white;
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-size: 16px;
   line-height: 24px;
@@ -10,10 +10,23 @@
   font-weight: 300;
   padding: 7px 14px;
   box-shadow: none;
-  display: flex;
+  display: none;
 }
 
 .navbar__btn_logout:hover {
+  box-shadow: 0 1px 1px 1px white;
+}
+
+.page_logged-in .navbar__btn_logout {
+  display: flex;
+}
+
+.header_theme_white .navbar__btn_logout {
+  border: 1px solid #1A1B22;
+  color: #1A1B22;
+}
+
+.header_theme_white .navbar__btn_logout:hover {
   box-shadow: 0 1px 1px 1px#1A1B22;
 }
 
@@ -25,5 +38,14 @@
   .navbar__btn_logout:hover {
     box-shadow: none;
     border: 2px solid #1A1B22;
+  }
+
+  .navbar_opened .navbar__btn_logout {
+    color: white;
+    border: 1px solid white;
+  }
+
+  .navbar_opened .navbar__btn_logout:hover {
+    border: 2px solid white;
   }
 }

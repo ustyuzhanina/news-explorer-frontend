@@ -2,14 +2,13 @@
   height: 40vw;
   max-width: 1440px;
   display: block;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
   color: #FFF;
   background-image: url('../../images/main-page-pic.jpg');
   background-position: top center;
   background-size: cover;
   background-repeat: no-repeat;
-  overflow: hidden;
 }
 
 .header_theme_white {
@@ -22,7 +21,6 @@
   .header {
     height: 576px;
   }
-
   .header_theme_white {
     height: 66px;
   }
@@ -33,7 +31,6 @@
     height: 400px;
     background-image: url('../../images/main-page-pic-768.jpg');
   }
-
   .header_theme_white {
     background: none;
     background-color: #FFF;
@@ -46,7 +43,6 @@
     height: 536px;
     background-image: url('../../images/main-page-pic-mobile.jpg');
   }
-
   .header_theme_white {
     background: none;
     background-color: #FFF;

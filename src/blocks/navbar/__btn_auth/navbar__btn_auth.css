@@ -16,6 +16,10 @@
   box-shadow: 0 1px 1px 1px rgb(192, 182, 182);
 }
 
+.page_logged-in .navbar__btn_auth {
+  display: none;
+}
+
 @media (max-width: 600px) {
   .navbar__btn_auth {
     padding: 11px 14px;

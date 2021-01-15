@@ -22,4 +22,7 @@
   .navbar__link-text {
     font-size: 18px;
   }
+  .navbar_opened .navbar__link-text {
+    color: white;
+  }
 }

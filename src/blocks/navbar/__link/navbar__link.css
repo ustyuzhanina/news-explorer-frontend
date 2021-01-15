@@ -8,6 +8,14 @@
   justify-content: center;
 }
 
+.navbar__link.navbar__link_private {
+  display: none;
+}
+
+.page_logged-in .navbar__link_private {
+  display: flex;
+}
+
 .navbar__link:last-of-type {
   margin: 0;
 }
@@ -22,7 +30,7 @@
 @media (max-width: 600px) {
   .navbar__link {
     height: 56px;
-    margin: 0;
+    margin: 0 0 16px;
     width: 100%;
   }
 }
