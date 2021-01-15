@@ -5,13 +5,8 @@
 @import url(./__source/card__source.css);
 @import url(./__title/card__title.css);
 @import url(./__info/card__info.css);
-@import url(./__item/card__item.css);
-@import url(./__keyword/card__keyword.css);
 @import url(./__controls/card__controls.css);
 @import url(./__icon/card__icon.css);
-@import url(./__hint/card__hint.css);
-@import url(./__hint/_logged-out/card__hint_logged-out.css);
-@import url(./__hint/_trash/card__hint_trash.css);
 .card {
   position: relative;
   width: 400px;

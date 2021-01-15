@@ -5,12 +5,10 @@
   background-color: white;
   border: none;
   position: relative;
-  /* position: absolute;
-  z-index: 3; */
   cursor: url(../../../images/cursor-lapka.png), pointer;
   padding: 8px;
   margin: 0;
-  border-radius: 5px;
+  border-radius: 10px;
   outline: none;
 }
 
@@ -40,6 +38,7 @@
 }
 
 /* popping up hints */
+
 .page_logged_in .card__icon_bookmark::before {
   display: none;
 }
@@ -54,8 +53,8 @@
   width: 182px;
   height: 40px;
   z-index: 3;
-  border-radius: 5px;
-  color:    black;
+  border-radius: 10px;
+  color: black;
   font-family: 'Roboto';
   font-size: 10px;
   line-height: 12px;
@@ -78,8 +77,8 @@
   width: 159px;
   height: 40px;
   z-index: 3;
-  border-radius: 5px;
-  color:    black;
+  border-radius: 10px;
+  color: black;
   font-family: 'Roboto';
   font-size: 12px;
   line-height: 14px;
@@ -91,3 +90,44 @@
   box-sizing: border-box;
   padding-top: 15px;
 }
+
+/* card keyword style */
+
+.card__icon_keyword {
+  display: none;
+  background-color: white;
+  border-radius: 10px;
+  margin: 0;
+  padding-left: 12px;
+  padding-right: 12px;
+  height: 40px;
+  width: fit-content;
+  text-align: center;
+  color: black;
+  font-family: 'Roboto';
+  font-size: 14px;
+  line-height: 24px;
+  font-style: normal;
+  font-weight: 500;
+  box-sizing: border-box;
+  vertical-align: middle;
+  cursor: auto;
+}
+
+.cards .card__icon_keyword {
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .card__icon_keyword {
+    display: none;
+  }
+  .card__icon_trash:hover.card__icon_trash::before {
+    display: none;
+  }
+
+  .card__icon_bookmark:hover.card__icon_bookmark::before {
+    display: none;
+  }
+}
+
