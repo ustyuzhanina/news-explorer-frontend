@@ -1,9 +1,0 @@
-.card__icon_bookmark {
-  background-image: url('../../../../images/bookmark-normal-png.png');
-  background-repeat: no-repeat;
-}
-
-.card__icon_bookmark:hover{
-  background-image: url('../../../../images/bookmark-hover-png.png');
-  background-size: 24px;
-}

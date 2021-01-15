@@ -1,9 +1,93 @@
 .card__icon {
   width: 40px;
-  background-repeat: no-repeat;
-  background-position: center;
+  height: 40px;
+  display: none;
+  background-color: white;
   border: none;
-  position: absolute;
-  z-index: 2;
+  position: relative;
+  /* position: absolute;
+  z-index: 3; */
   cursor: url(../../../images/cursor-lapka.png), pointer;
+  padding: 8px;
+  margin: 0;
+  border-radius: 5px;
+  outline: none;
+}
+
+.card__icon:hover path {
+  stroke: #1A1B22;
+}
+
+.card__icon_trash:hover path {
+  stroke-width: 0;
+  fill: #1A1B22;
+}
+
+.search-results .card__icon_bookmark {
+  display: block;
+}
+
+.search-results .card__icon_trash {
+  display: none;
+}
+
+.cards .card__icon_bookmark {
+  display: none;
+}
+
+.cards .card__icon_trash {
+  display: block;
+}
+
+/* popping up hints */
+.page_logged_in .card__icon_bookmark::before {
+  display: none;
+}
+
+.card__icon_bookmark:hover.card__icon_bookmark::before {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -187px;
+  content: 'Войдите, чтобы сохранять статьи';
+  background-color: white;
+  width: 182px;
+  height: 40px;
+  z-index: 3;
+  border-radius: 5px;
+  color:    black;
+  font-family: 'Roboto';
+  font-size: 10px;
+  line-height: 12px;
+  font-style: normal;
+  font-weight: 500;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  box-sizing: border-box;
+  padding-top: 15px;
+}
+
+.card__icon_trash:hover.card__icon_trash::before {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -164px;
+  content: 'Убрать из сохранённых';
+  background-color: white;
+  width: 159px;
+  height: 40px;
+  z-index: 3;
+  border-radius: 5px;
+  color:    black;
+  font-family: 'Roboto';
+  font-size: 12px;
+  line-height: 14px;
+  font-style: normal;
+  font-weight: 500;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  box-sizing: border-box;
+  padding-top: 15px;
 }
