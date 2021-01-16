@@ -4,7 +4,7 @@ Version 0.0.1
 ## About project:
 This is a frontend part (without Javascript) for News Explorer project, which enables its users to search for interesting news and save them in a user's personal account area.
 
-GitHub Pages link: 
+GitHub Pages link: https://ustyuzhanina.github.io/news-explorer-frontend/
 
 <img src="./src/images/label.jpg" alt="News Explorer main page with a search engine empty space line" width="100%"/>
 
