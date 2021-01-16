@@ -11,12 +11,12 @@ const isDev = process.env.NODE_ENV === 'development';
 
 module.exports = {
   entry: {
-    index: './src/pages/index/index.js',
-    articles: './src/pages/articles/index.js',
+    index: './src/index.js',
+    articles: './src/articles/index.js',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: './js/[name]/[name].[chunkhash].js',
+    filename: 'js/[name].[chunkhash].js',
   },
   module: {
     rules: [
@@ -33,7 +33,7 @@ module.exports = {
             : {
               loader: MiniCssExtractPlugin.loader,
               options: {
-                publicPath: '../../',
+                publicPath: '../',
               },
             },
           {
@@ -51,13 +51,13 @@ module.exports = {
             loader: 'file-loader',
             options: {
               esModule: false,
-              name: './images/[name].[ext]',
+              name: 'images/[name].[ext]',
             },
           },
           {
             loader: 'image-webpack-loader',
             options: {
-              name: './images/[name].[ext]',
+              // name: './images/[name].[ext]',
               esModule: false,
               mozjpeg: {
                 progressive: true,
@@ -89,7 +89,7 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: './vendor/fonts/[name].[ext]',
+              name: 'vendor/fonts/[name].[ext]',
             },
           },
         ],
@@ -98,7 +98,7 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: './css/[name].[contenthash].css',
+      filename: 'css/[name].[contenthash].css',
     }),
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /\.css$/g,
@@ -120,8 +120,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       // Означает, что:
       inject: false, // стили НЕ нужно прописывать внутри тегов
-      template: './src/articles.html', // откуда брать образец для сравнения с текущим видом проекта
-      filename: 'articles.html', // имя выходного файла, то есть того, что окажется в папке dist после сборки
+      template: './src/articles/index.html', // откуда брать образец для сравнения с текущим видом проекта
+      filename: 'articles/index.html', // имя выходного файла, то есть того, что окажется в папке dist после сборки
       chunks: [
         'articles',
       ],

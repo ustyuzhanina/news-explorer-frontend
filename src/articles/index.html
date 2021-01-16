@@ -7,7 +7,7 @@
   <meta name="author" content="Elena Ustyuzhanina">
   <meta name="description" content="Сервис для выборки по ключевым словам интересующих новостей и их сохранения в личном кабинете пользователя">
   <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.chunks.articles.css %>">
-  <link rel="shortcut icon" href="<%=require('./images/favicon.png')%>" type="image/png">
+  <link rel="shortcut icon" href="../<%=require('../images/favicon.png')%>" type="image/png">
 </head>
 <body>
   <div class="page page_logged-in">
@@ -15,17 +15,17 @@
 
       <nav class="navbar">
         <div class="navbar__drop-down-menu">
-          <a href="./" class="navbar__title navbar__title_color_black">NewsExplorer</a>
+          <a href="../" class="navbar__title navbar__title_color_black">NewsExplorer</a>
           <button type="button" class="navbar__show-menu-btn"></button>
         </div>
 
         <ul class="navbar__links">
           <li class="navbar__link ">
-            <a href="./index.html" class="navbar__link-text">Главная</a>
+            <a href="./" class="navbar__link-text">Главная</a>
           </li>
 
           <li class="navbar__link navbar__link_private navbar__link_underline">
-            <a href="./articles.html" class="navbar__link-text">Сохранённые&nbsp;статьи</a>
+            <a href="./articles" class="navbar__link-text">Сохранённые&nbsp;статьи</a>
           </li>
 
           <li class="navbar__link">
@@ -69,7 +69,7 @@
 
           <article class="card">
             <div class="card__cover">
-              <img src="<%=require('./images/article-image-4.jpg')%>" alt="Фотография ветки лиственного кустарника" class="card__image">
+              <img src="../<%=require('../images/article-image-4.jpg')%>" alt="Фотография ветки лиственного кустарника" class="card__image">
               <div class="card__controls">
                 <button class="card__icon card__icon_trash">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -98,7 +98,7 @@
 
           <article class="card">
             <div class="card__cover">
-              <img src="<%=require('./images/article-image-5.jpg')%>" alt="Фотография вида сверху на испещрённую зарослями кустарника долину" class="card__image">
+              <img src="../<%=require('../images/article-image-5.jpg')%>" alt="Фотография вида сверху на испещрённую зарослями кустарника долину" class="card__image">
               <div class="card__controls">
                 <button class="card__icon card__icon_trash">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -126,7 +126,7 @@
 
           <article class="card">
             <div class="card__cover">
-              <img src="<%=require('./images/article-image-6.jpg')%>" alt="Фотография ветки папоротника в графине с водой" class="card__image">
+              <img src="../<%=require('../images/article-image-6.jpg')%>" alt="Фотография ветки папоротника в графине с водой" class="card__image">
               <div class="card__controls">
                 <button class="card__icon card__icon_trash">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -155,7 +155,7 @@
 
           <article class="card">
             <div class="card__cover">
-              <img src="<%=require('./images/article-image-4.jpg')%>" alt="Фотография ветки лиственного кустарника" class="card__image">
+              <img src="../<%=require('../images/article-image-4.jpg')%>" alt="Фотография ветки лиственного кустарника" class="card__image">
               <div class="card__controls">
                 <button class="card__icon card__icon_trash">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -184,7 +184,7 @@
 
           <article class="card">
             <div class="card__cover">
-              <img src="<%=require('./images/article-image-5.jpg')%>" alt="Фотография вида сверху на испещрённую зарослями кустарника долину" class="card__image">
+              <img src="../<%=require('../images/article-image-5.jpg')%>" alt="Фотография вида сверху на испещрённую зарослями кустарника долину" class="card__image">
               <div class="card__controls">
                 <button class="card__icon card__icon_trash">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -222,7 +222,7 @@
         <div class="footer__container-column">
 
           <div class="footer__link-container">
-            <a class="footer__link" href="./index.html">Главная</a>
+            <a class="footer__link" href="./">Главная</a>
             <a class="footer__link" href="https://praktikum.yandex.ru">Яндекс.Практикум</a>
           </div>
           <div class="footer__social-networks">
