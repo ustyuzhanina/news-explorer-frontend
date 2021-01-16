@@ -57,7 +57,6 @@ module.exports = {
           {
             loader: 'image-webpack-loader',
             options: {
-              // name: './images/[name].[ext]',
               esModule: false,
               mozjpeg: {
                 progressive: true,

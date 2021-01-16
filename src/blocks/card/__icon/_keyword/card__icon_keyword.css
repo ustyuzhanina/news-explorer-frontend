@@ -1,0 +1,24 @@
+.card__icon_keyword {
+  display: none;
+  background-color: white;
+  border-radius: 10px;
+  margin: 0;
+  padding-left: 12px;
+  padding-right: 12px;
+  height: 40px;
+  width: fit-content;
+  text-align: center;
+  color: black;
+  font-family: 'Roboto';
+  font-size: 14px;
+  line-height: 24px;
+  font-style: normal;
+  font-weight: 500;
+  box-sizing: border-box;
+  vertical-align: middle;
+  cursor: auto;
+}
+
+.cards .card__icon_keyword {
+  display: inline-block;
+}

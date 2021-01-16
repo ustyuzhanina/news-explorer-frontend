@@ -1,0 +1,67 @@
+.page_logged-in .card__icon_bookmark_marked path {
+  stroke: #2F71E5;
+  fill: #2F71E5;
+}
+
+.search-results .card__icon_bookmark {
+  display: block;
+}
+
+.cards .card__icon_bookmark {
+  display: none;
+}
+
+/* popping up hints */
+
+.card__icon_bookmark:hover::before {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -187px;
+  content: 'Войдите, чтобы сохранять статьи';
+  background-color: white;
+  width: 182px;
+  height: 40px;
+  z-index: 3;
+  border-radius: 10px;
+  color: black;
+  font-family: 'Roboto';
+  font-size: 10px;
+  line-height: 12px;
+  font-style: normal;
+  font-weight: 500;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  box-sizing: border-box;
+  padding-top: 15px;
+}
+
+.page_logged-in .card__icon_bookmark:hover::before {
+  display: none;
+}
+
+@media (max-width: 920px) {
+  .card__icon_bookmark:hover::before {
+    display: inline-block;
+    top: 0;
+    left: -125px;
+    width: 120px;
+    height: 40px;
+    z-index: 3;
+    border-radius: 10px;
+    color: black;
+    font-family: 'Roboto';
+    font-size: 10px;
+    line-height: auto;
+    font-style: normal;
+    text-align: center;
+    padding-top: 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .card__icon_bookmark:hover::before {
+    display: none;
+  }
+}

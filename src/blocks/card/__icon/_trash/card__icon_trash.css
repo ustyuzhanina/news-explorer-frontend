@@ -1,0 +1,46 @@
+.card__icon_trash:hover path {
+  stroke-width: 0;
+  fill: #1A1B22;
+}
+
+.search-results .card__icon_trash {
+  display: none;
+}
+
+.cards .card__icon_trash {
+  display: block;
+}
+
+/* styles for trash button hint */
+
+.card__icon_trash:hover.card__icon_trash::before {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -164px;
+  content: 'Убрать из сохранённых';
+  background-color: white;
+  width: 159px;
+  height: 40px;
+  z-index: 3;
+  border-radius: 10px;
+  color: black;
+  font-family: 'Roboto';
+  font-size: 12px;
+  line-height: 14px;
+  font-style: normal;
+  font-weight: 500;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  box-sizing: border-box;
+  padding-top: 15px;
+}
+
+/* narrow screens do not need hints as there is no cursor */
+
+@media (max-width: 768px) {
+  .card__icon_trash:hover.card__icon_trash::before {
+    display: none;
+  }
+}

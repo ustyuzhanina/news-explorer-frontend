@@ -7,6 +7,9 @@
 @import url(./__info/card__info.css);
 @import url(./__controls/card__controls.css);
 @import url(./__icon/card__icon.css);
+@import url(./__icon/_keyword/card__icon_keyword.css);
+@import url(./__icon/_trash/card__icon_trash.css);
+@import url(./__icon/_bookmark/card__icon_bookmark.css);
 .card {
   position: relative;
   width: 400px;

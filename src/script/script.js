@@ -22,6 +22,7 @@ export default (function () {
   const popupSuccessRegGoToEnter = popupSuccessReg.querySelector('span.popup__input-link');
 
   const logoutBtn = document.querySelector('.navbar__btn_logout');
+  const cards = document.querySelector('.cards-list');
 
   navbarBtn.addEventListener('click', () => {
     navbar.classList.toggle('navbar_opened');
@@ -88,6 +89,11 @@ export default (function () {
 
     preloader.classList.toggle('preloader_visible');
     setTimeout(showNoResults, 4000);
+  });
+
+  cards.addEventListener('click', () => {
+    const bookmarkBtn = event.target.closest('.card__icon_bookmark');
+    bookmarkBtn.classList.toggle('card__icon_bookmark_marked');
   });
 
   // конец IIFE
