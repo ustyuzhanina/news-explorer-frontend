@@ -1,0 +1,4 @@
+.footer__social-networks {
+  display: flex;
+  justify-content: flex-start;
+}

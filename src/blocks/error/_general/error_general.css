@@ -1,0 +1,7 @@
+.error_general {
+  margin: 0;
+  padding: 0;
+  display: none;
+  top: -24px;
+  left: calc(100%/2 - 96px) !important;
+}

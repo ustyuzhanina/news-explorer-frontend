@@ -1,0 +1,16 @@
+.search__header {
+  margin: 0;
+  font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  font-size: 60px;
+  line-height: 64px;
+  padding: 0;
+}
+
+@media (max-width: 1024px) {
+  .search__header {
+    font-size: 36px;
+    line-height: 40px;
+    width: 65%;
+  }
+}

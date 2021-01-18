@@ -1,0 +1,27 @@
+.footer__container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  width: calc(100% - 208px);
+}
+
+@media screen and (max-width: 950px) {
+  .footer__container {
+    width: calc(100% - 80px);
+  }
+}
+
+@media screen and (max-width: 786px) {
+  .footer__container {
+    align-items: baseline;
+  }
+}
+
+@media screen and (max-width: 660px) {
+  .footer__container {
+    width: calc(100% - 32px);
+    align-items: flex-start;
+    flex-direction: column-reverse;
+  }
+}

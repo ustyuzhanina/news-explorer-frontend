@@ -1,0 +1,19 @@
+.footer__link {
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  cursor: url(../../../images/cursor-lapka.png), pointer;
+  font-size: 18px;
+  margin-right: 30px;
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 786px) {
+  .footer__link {
+    margin-bottom: 24px;
+  }
+  .footer__link:last-of-type {
+    margin-bottom: 0;
+  }
+
+}

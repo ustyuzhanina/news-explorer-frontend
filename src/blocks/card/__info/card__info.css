@@ -1,0 +1,46 @@
+ .card__info {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  color: #1a1b22;
+  margin-top: 16px;
+  margin-bottom: 0px;
+  /* block-ellipsis: auto; */ /* it is not yet supported, I guess (((*/
+  overflow: hidden;
+  /* display: inline-block; */
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  margin-inline-end: -10px;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 1280px) {
+  .card__info {
+    font-size: 16px;
+    line-height: 22x;
+    margin-top: 10px;
+    height: 88px;
+  }
+}
+
+@media screen and (max-width: 920px) {
+  .card__info {
+    width: 192px;
+    font-size: 16px;
+    line-height: 18px;
+    margin-top: 7px;
+    -webkit-line-clamp: 5;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .card__info {
+    width: 256px;
+    font-size: 18px;
+    line-height: 22px;
+    margin-top: 8px;
+    -webkit-line-clamp: 4;
+  }
+}

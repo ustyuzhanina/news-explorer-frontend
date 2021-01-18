@@ -1,0 +1,32 @@
+.navbar__show-menu-btn {
+  display: none;
+  height: 24px;
+  width: 24px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  background-image: url(../../../images/menu-button-white-png.png);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.navbar__show-menu-btn:hover {
+  cursor: url(../../../images/cursor-lapka.png), pointer;
+}
+
+@media (max-width: 600px) {
+  .navbar__show-menu-btn {
+    display: block;
+  }
+
+  .header_theme_white .navbar__show-menu-btn {
+    background-image: url(../../../images/menu-button-dark-png.png);
+  }
+
+  .navbar_opened .navbar__show-menu-btn {
+    background-image: url(../../../images/close-button-mobile.png);
+  }
+
+}

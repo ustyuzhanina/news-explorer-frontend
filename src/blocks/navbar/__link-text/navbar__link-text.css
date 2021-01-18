@@ -1,0 +1,28 @@
+.navbar__link-text {
+  text-decoration: none;
+  color: white;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  line-height: 50px;
+  font-style: normal;
+  cursor: url('../../../images/cursor-lapka.png'), pointer;
+}
+
+.header_theme_white .navbar__link-text {
+  color: #1A1B22;
+}
+
+@media (max-width: 920px) {
+  .navbar__link-text {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar__link-text {
+    font-size: 18px;
+  }
+  .navbar_opened .navbar__link-text {
+    color: white;
+  }
+}

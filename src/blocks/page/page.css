@@ -1,0 +1,12 @@
+.page {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+  position: relative;
+  min-height: 100vh;
+  font-family: Helvetica, Arial, sans-serif;
+  color: #1A1B22;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
