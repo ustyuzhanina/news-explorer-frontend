@@ -1,5 +1,7 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-underscore-dangle */
+import removeQuotes from '../utils/removeQuotes';
+
 export default class NewsApi {
   constructor(config) {
     this.baseUrl = config.baseUrl;
@@ -10,38 +12,31 @@ export default class NewsApi {
     this.sortBy = config.params.sortBy;
     this.pageSize = config.params.pageSize;
     this.apiKey = config.apiKey;
+    this._getResponseData = this._getResponseData.bind(this);
     this.getNews = this.getNews.bind(this);
   }
 
-  // _getResponseData(res) {
-  //   if (!res.ok) {
-  //     return Promise.reject(new Error(`Ошибка: ${res.status}`));
-  //   }
-  //   return res.json();
-  // }
+  _getResponseData(res) {
+    if (!res.ok) {
+      return Promise.reject(new Error(`Ошибка: ${res.status}`));
+    }
+    return res.json();
+  }
 
   getNews() {
     const header = new Headers();
-    header.append('x-api-key', `${this.apiKey.replace('\'', '')}`);
+    header.append('x-api-key', this.apiKey);
 
-    const url = 'https://newsapi.org/v2/everything?q=экономика&from=2021-01-01&to=2021-01-20&language=ru&sortBy=popularity&pageSize=3';
+    const url = `
+    ${removeQuotes(this.baseUrl)}?q=${removeQuotes(this.q)}&from=${this.from}&to=${this.to}&language=${this.language}&sortBy=${this.sortBy}&pageSize=${this.pageSize}
+    `;
 
     const req = new Request(url.trim());
 
     return fetch(req, {
       headers: header,
     })
-      .then((res) => res.json())
+      .then((res) => this._getResponseData(res))
       .then((res) => res.articles);
   }
 }
-
-// const url = `
-// ${this.baseUrl}?
-// q=${this.q}&
-// from=${this.from}&
-// to=${this.to}&
-// language=${this.language}&
-// sortBy=${this.sortBy}&
-// pageSize=${this.pageSize}
-// `;
