@@ -6,6 +6,7 @@ const FROM_DAY = new Date();
 const WEEK_AGO_DATE = (new Date(FROM_DAY.setDate(FROM_DAY.getDate() - 7)))
   .toJSON().toString().slice([0], [10]);
 
+
 const NEWS_API_CONFIG = {
   baseUrl: `${API_URL}${ENDPOINT}`,
   apiKey: 'b326bbabb1dd4436bca051964a795414',

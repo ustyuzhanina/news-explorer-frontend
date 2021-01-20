@@ -12,6 +12,13 @@ export default class NewsCard {
   }
 
   create() {
+    const cardDate = (new Intl.DateTimeFormat('ru', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    }).format(new Date(this.date))).replace(' г.', '').replace(' 20', ', 20');
+
+
     const template = `
     <article class="card">
     <div class="card__cover">
@@ -31,7 +38,7 @@ export default class NewsCard {
       </div>
     </div>
     <div class="card__description">
-      <time class="card__data" datetime="${this.date}">${this.date}</time>
+      <time class="card__data" datetime="${(new Date(this.date)).toJSON().toString().slice([0], [10])}">${cardDate}</time>
       <h2 class="card__title">${this.title}</h2>
       <p class="card__info">${this.text}</p>
     </div>
