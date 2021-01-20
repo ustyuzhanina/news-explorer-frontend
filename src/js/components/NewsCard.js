@@ -1,13 +1,13 @@
 export default class NewsCard {
-  constructor(cardElementData, keyword) {
-    this.renderIcon = this.renderIcon.bind(this); // отвечает за отрисовку иконки карточки. У этой иконки три состояния: иконка незалогиненного пользователя, активная иконка залогиненного, неактивная иконка залогиненного.
-    this.keyword = keyword.q;
+  constructor(cardElementData) {
+    // this.renderIcon = this.renderIcon.bind(this); // отвечает за отрисовку иконки карточки. У этой иконки три состояния: иконка незалогиненного пользователя, активная иконка залогиненного, неактивная иконка залогиненного.
+    this.keyword = 'экономика';
     this.source = cardElementData.source.name;
     this.title = cardElementData.title;
-    this.description = cardElementData.description;
-    this.url = cardElementData.url;
-    this.urlToImage = cardElementData.urlToImage;
-    this.publishedAt = cardElementData.publishedAt;
+    this.text = cardElementData.description;
+    this.link = cardElementData.url;
+    this.image = cardElementData.urlToImage;
+    this.date = cardElementData.publishedAt;
     this.newCard = null;
   }
 
@@ -15,7 +15,7 @@ export default class NewsCard {
     const template = `
     <article class="card">
     <div class="card__cover">
-      <img src="${this.urlToImage}" alt="" class="card__image">
+      <img src="${this.image}" alt="" class="card__image">
       <div class="card__controls">
         <button class="card__icon card__icon_trash">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -31,9 +31,9 @@ export default class NewsCard {
       </div>
     </div>
     <div class="card__description">
-      <time class="card__data" datetime="${this.urlToImage}">${this.publishedAt}</time>
+      <time class="card__data" datetime="${this.date}">${this.date}</time>
       <h2 class="card__title">${this.title}</h2>
-      <p class="card__info">${this.description}</p>
+      <p class="card__info">${this.text}</p>
     </div>
     <h3 class="card__source">${this.source}</h3>
   </article>

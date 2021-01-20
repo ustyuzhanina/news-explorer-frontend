@@ -1,19 +1,16 @@
 // export const API_URL = NODE_ENV === 'production' ? 'https://nomoreparties.co' : 'http://nomoreparties.co';
-const API_URL = 'http://newsapi.org';
+const API_URL = 'https://newsapi.org/v2';
 
 const NEWS_API_CONFIG = {
-  baseUrl: `${API_URL}/v2/everything`,
+  baseUrl: `${API_URL}/everything`,
+  apiKey: 'b326bbabb1dd4436bca051964a795414',
   params: {
-    from: '2021-01-18',
-    to: '2021-01-18',
-    sortBy: 'popularity',
-    pageSize: 3, // 100
+    q: 'экономика',
+    from: '2021-01-01',
+    to: '2021-01-19',
     language: 'ru',
-    q: '',
-  },
-  headers: {
-    'X-Api-Key': 'b326bbabb1dd4436bca051964a795414',
-    'Content-Type': 'application/json',
+    sortBy: 'popularity',
+    pageSize: 9, // 100
   },
 };
 
