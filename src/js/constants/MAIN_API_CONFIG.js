@@ -6,6 +6,6 @@ const MAIN_API_CONFIG = {
   },
 };
 
-export default {
+export {
   MAIN_API_CONFIG,
 };
