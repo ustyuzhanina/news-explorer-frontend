@@ -1,6 +1,7 @@
+/* eslint-disable no-underscore-dangle */
 export default class MainApi {
   constructor(config) {
-    this.baseUrl = config.baseUrl;
+    this.baseUrl = config.url;
     this.headers = config.headers;
     this._getResponseData = this._getResponseData.bind(this);
     this.signup = this.signup.bind(this);
@@ -19,5 +20,118 @@ export default class MainApi {
     return res.json();
   }
 
+  // methods for users' data
 
+  signup(data) {
+    const url = `${this.baseUrl}/signup`;
+
+    return fetch(url, {
+      method: 'POST',
+      headers: this.headers,
+      body: JSON.stringify(data),
+    })
+      .then((res) => this._getResponseData(res))
+      .catch((err) => {
+        if (err.message === 'Failed to fetch') {
+          return new Error('потом прописать сообщение об ошибке в константы');
+        }
+        return err;
+      });
+  }
+
+  signin(userData) {
+    const url = `${this.baseUrl}/signin`;
+
+    return fetch(url, {
+      method: 'POST',
+      headers: this.headers,
+      body: JSON.stringify(userData),
+    })
+      .then((res) => this._getResponseData(res))
+      .catch((err) => {
+        if (err.message === 'Failed to fetch') {
+          return new Error('потом прописать сообщение об ошибке в константы');
+        }
+        return err;
+      });
+  }
+
+  getUserData(token) {
+    const url = `${this.baseUrl}/users/me`;
+
+    return fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': this.headers['Content-Type'],
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => this._getResponseData(res))
+      .catch((err) => {
+        if (err.message === 'Failed to fetch') {
+          return new Error('потом прописать сообщение об ошибке в константы');
+        }
+        return err;
+      });
+  }
+
+  // methods for articles
+
+  getArticles(token) {
+    const url = `${this.baseUrl}/articles`;
+
+    return fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': this.headers['Content-Type'],
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => this._getResponseData(res))
+      .catch((err) => {
+        if (err.message === 'Failed to fetch') {
+          return new Error('потом прописать сообщение об ошибке в константы');
+        }
+        return err;
+      });
+  }
+
+  createArticle(articleData, token) {
+    const url = `${this.baseUrl}/articles`;
+
+    return fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': this.headers['Content-Type'],
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(articleData),
+    })
+      .then((res) => this._getResponseData(res))
+      .catch((err) => {
+        if (err.message === 'Failed to fetch') {
+          return new Error('потом прописать сообщение об ошибке в константы');
+        }
+        return err;
+      });
+  }
+
+  removeArticle(articleId, token) {
+    const url = `${this.baseUrl}/articles/${articleId}`;
+
+    return fetch(url, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': this.headers['Content-Type'],
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => this._getResponseData(res))
+      .catch((err) => {
+        if (err.message === 'Failed to fetch') {
+          return new Error('потом прописать сообщение об ошибке в константы');
+        }
+        return err;
+      });
+  }
 }

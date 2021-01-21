@@ -34,8 +34,11 @@ import {
 
   const keyword = 'дизайн';
   newsApi.getNews(keyword).then((res) => {
-    console.log(res);
-    const cardsArray = res.map((item) => {
+    console.log(res.articles);
+    if (res.articles.length === 0) {
+      return new Error('ничего не найдено');
+    }
+    const cardsArray = res.articles.map((item) => {
       const card = new NewsCard(item);
       return card.create();
     });

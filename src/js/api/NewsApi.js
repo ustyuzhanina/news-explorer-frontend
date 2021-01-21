@@ -38,6 +38,5 @@ export default class NewsApi {
   //     headers: header,
   //   })
   //     .then((res) => this._getResponseData(res))
-  //     .then((res) => res.articles);
   // }
 }
