@@ -10,15 +10,30 @@ import Header from './js/components/Header';
 import NewsCard from './js/components/NewsCard';
 import NewsCardList from './js/components/NewsCardList';
 import Popup from './js/components/Popup';
-import NEWS_API_CONFIG from './js/constants/NEWS_API_CONFIG';
+import { NEWS_API_CONFIG } from './js/constants/NEWS_API_CONFIG';
+import { MAIN_API_CONFIG } from './js/constants/MAIN_API_CONFIG';
+import {
+  CARD_CONTAINER,
+  PAGE,
+  HEADER,
+  NAVBAR,
+  NAVBAR_SHOW_MENU_BTN,
+  NAVBAR_BTN_AUTH,
+  NAVBAR_BTN_LOGOUT,
+  SEARCH_FORM,
+  SEARCH_BAR,
+  SEARCH_BTN,
+  BTN_SHOW_MORE,
+  PRELOADER,
+  NOT_FOUND,
+} from './js/constants/MARKUP_SELECTORS';
 
 (function () {
-  const cardContainer = document.querySelector('.cards-list');
-  const newsApiConfig = NEWS_API_CONFIG.NEWS_API_CONFIG;
-  const newsApi = new NewsApi(newsApiConfig);
-  const newsCardList = new NewsCardList(cardContainer);
+  const newsApi = new NewsApi(NEWS_API_CONFIG);
+  const newsCardList = new NewsCardList(CARD_CONTAINER);
 
-  newsApi.getNews().then((res) => {
+  const keyword = 'дизайн';
+  newsApi.getNews(keyword).then((res) => {
     console.log(res);
     const cardsArray = res.map((item) => {
       const card = new NewsCard(item);

@@ -18,4 +18,6 @@ export default class MainApi {
     }
     return res.json();
   }
+
+
 }

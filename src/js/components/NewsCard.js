@@ -38,7 +38,7 @@ export default class NewsCard {
       </div>
     </div>
     <div class="card__description">
-      <time class="card__data" datetime="${(new Date(this.date)).toJSON().toString().slice([0], [10])}">${cardDate}</time>
+      <time class="card__data" datetime="${(new Date(this.date)).toISOString().slice([0], [10])}">${cardDate}</time>
       <h2 class="card__title">${this.title}</h2>
       <p class="card__info">${this.text}</p>
     </div>
