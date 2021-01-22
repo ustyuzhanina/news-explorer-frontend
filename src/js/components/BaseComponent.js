@@ -1,10 +1,10 @@
 /* eslint-disable no-underscore-dangle */
 export default class BaseComponent {
-  constructor(handlersArray) {
+  constructor() {
     this._setHandlers = this._setHandlers.bind(this);
     this._setEventListeners = this._setEventListeners.bind(this);
-    this._removeEventListeners = this._setHandlers.bind(this);
-    this.handlersArray = handlersArray;
+    this.removeEventListeners = this.removeEventListeners.bind(this);
+    this.handlersArray = [];
   }
 
   _setHandlers(eventObjects = []) {
@@ -16,7 +16,7 @@ export default class BaseComponent {
     this.handlersArray.push({ element, event, callback });
   }
 
-  _removeEventListeners() {
+  removeEventListeners() {
     this.handlersArray.forEach(({ element, event, callback }) => {
       element.removeEventListener(event, callback);
     });

@@ -63,21 +63,23 @@
 
     <main class="content">
 
-      <!-- ПРЕЛОАДЕР ГОТОВ! -->
       <section class="preloader">
         <h2 class="title-visually-hidden">Подождите, идет поиск новостей согласно заданному ключевому слову</h2>
         <span class="preloader__circle"></span>
         <p class="preloader__text">Идет поиск новостей...</p>
       </section>
 
-      <!-- Секция НИЧЕГО НЕ НАЙДЕНО готова! -->
       <section class="not-found">
         <img class="not-found__image" src="<%=require('./images/not-found-png.png')%>" alt="Изображение человека, разводящего руками, так как он не смог ничего найти">
         <h2 class="not-found__header">Ничего не найдено</h2>
         <p class="not-found__description">К сожалению по вашему запросу ничего не найдено.</p>
       </section>
 
-      <!-- СЕКЦИЯ search-results ГОТОВА! -->
+      <section class="search-error">
+        <h2 class="title-visually-hidden">Во время запроса произошла ошибка</h2>
+        <p class="search-error__description">Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.</p>
+      </section>
+
       <section class="search-results">
         <h2 class="title search-results__title">Результаты поиска</h2>
 
@@ -87,7 +89,6 @@
 
       </section>
 
-      <!-- СЕКЦИЯ -об авторе- ГОТОВА! -->
       <section class="author">
         <h2 class="title-visually-hidden">Несколько слов об авторе сайта</h2>
         <picture>
@@ -111,7 +112,6 @@
 
     </main>
 
-<!-- СЕКЦИЯ FOOTER ГОТОВА! -->
     <footer class="footer">
       <div class="footer__container">
         <p class="footer__copyright">&copy;2020&nbsp;Supersite,&nbsp;Powered&nbsp;by&nbsp;News&nbsp;API</p>

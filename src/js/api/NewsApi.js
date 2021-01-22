@@ -23,20 +23,22 @@ export default class NewsApi {
     return res.json();
   }
 
-  // getNews(keyword) {
-  //   this.q = keyword;
-  //   const header = new Headers();
-  //   header.append('x-api-key', this.apiKey);
+  getNews(renderResults, renderLoader, renderError) {
+    const header = new Headers();
+    header.append('x-api-key', this.apiKey);
 
-  //   const url = `
-  //   ${removeQuotes(this.baseUrl)}?q=${removeQuotes(this.q)}&from=${this.from}&to=${this.to}&language=${this.language}&sortBy=${this.sortBy}&pageSize=${this.pageSize}
-  //   `;
+    const url = `
+    ${removeQuotes(this.baseUrl)}?q=${removeQuotes(this.q)}&from=${this.from}&to=${this.to}&language=${this.language}&sortBy=${this.sortBy}&pageSize=${this.pageSize}
+    `;
 
-  //   const req = new Request(url.trim());
+    const req = new Request(url.trim());
 
-  //   return fetch(req, {
-  //     headers: header,
-  //   })
-  //     .then((res) => this._getResponseData(res))
-  // }
+    return fetch(req, {
+      headers: header,
+    })
+      .then((res) => this._getResponseData(res))
+      .then((res) => renderResults(res.articles))
+      .catch(((err) => renderError(err)))
+      .finally(() => renderLoader(false));
+  }
 }

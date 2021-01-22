@@ -30,19 +30,6 @@ import {
 
 (function () {
   const newsApi = new NewsApi(NEWS_API_CONFIG);
-  const newsCardList = new NewsCardList(CARD_CONTAINER);
-
-  const keyword = 'дизайн';
-  newsApi.getNews(keyword).then((res) => {
-    console.log(res.articles);
-    if (res.articles.length === 0) {
-      return new Error('ничего не найдено');
-    }
-    const cardsArray = res.articles.map((item) => {
-      const card = new NewsCard(item);
-      return card.create();
-    });
-    newsCardList.renderResults(cardsArray);
-  })
-    .catch((err) => console.log(err));
+  const newsCardList = new NewsCardList(CARD_CONTAINER, newsApi);
+  const mainApi = new MainApi(MAIN_API_CONFIG);
 })();
