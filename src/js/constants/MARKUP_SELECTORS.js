@@ -13,6 +13,7 @@ const SEARCH_BTN = document.querySelector('.search__button');
 const BTN_SHOW_MORE = document.querySelector('.button_show-more');
 const PRELOADER = document.querySelector('.preloader');
 const NOT_FOUND = document.querySelector('.not-found');
+const INTRO = document.querySelector('.intro');
 
 const CARDS_RENDER_QTY = 3;
 
@@ -33,4 +34,5 @@ export {
   PRELOADER,
   NOT_FOUND,
   CARDS_RENDER_QTY,
+  INTRO,
 };

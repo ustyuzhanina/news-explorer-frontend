@@ -11,6 +11,8 @@ import NewsCardList from './js/components/NewsCardList';
 import Popup from './js/components/Popup';
 import { NEWS_API_CONFIG } from './js/constants/NEWS_API_CONFIG';
 import { MAIN_API_CONFIG } from './js/constants/MAIN_API_CONFIG';
+import { USER } from './js/constants/USER';
+import SavedNewsPage from './js/components/SavedNewsPage';
 import {
   CARD_CONTAINER,
   PAGE,
@@ -31,7 +33,10 @@ import {
   const newsApi = new NewsApi(NEWS_API_CONFIG);
   const mainApi = new MainApi(MAIN_API_CONFIG);
   const form = new Form(SEARCH_BAR, SEARCH_BTN);
+  const savedNewsPage = new SavedNewsPage(USER);
+  const newsCard = new NewsCard(mainApi, savedNewsPage);
+
 
   form.setEventListeners();
-
+  newsCard.setEventListeners();
 })();
