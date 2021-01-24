@@ -1,37 +1,25 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable class-methods-use-this */
-import BaseComponent from './BaseComponent';
 import {
   SEARCH_RESULTS,
   SEARCH_ERROR,
   CARD_CONTAINER,
-  PAGE,
-  HEADER,
-  NAVBAR,
-  NAVBAR_SHOW_MENU_BTN,
-  NAVBAR_BTN_AUTH,
-  NAVBAR_BTN_LOGOUT,
-  SEARCH_FORM,
-  SEARCH_BAR,
-  SEARCH_BTN,
   BTN_SHOW_MORE,
   PRELOADER,
   NOT_FOUND,
   CARDS_RENDER_QTY,
 } from '../constants/MARKUP_SELECTORS';
 
-export default class NewsCardList extends BaseComponent {
-  constructor(container, newsApi) { // принимает массив карточек, которые должны быть в списке при первой отрисовке.
-    super();
-    this.container = container;
+export default class NewsCardList {
+  constructor(cardsArray) { // принимает массив карточек, которые должны быть в списке при первой отрисовке.
+    this.container = CARD_CONTAINER;
     this.renderResults = this.renderResults.bind(this);
     this.renderLoader = this.renderLoader.bind(this);
     this.renderError = this.renderError.bind(this);
     this.showMore = this.showMore.bind(this); // отвечает за функциональность кнопки «Показать ещё»
     this.addCard = this.addCard.bind(this); // принимает экземпляр карточки и добавляет её в список
     this.cardRenderCounter = 0;
-    this.setEventListeners = this.setEventListeners.bind(this);
     this.resetSearch = this.resetSearch.bind(this);
-    this.newsApi = newsApi;
   }
 
   addCard(newCard) {
@@ -92,25 +80,5 @@ export default class NewsCardList extends BaseComponent {
     NOT_FOUND.classList.remove('.not-found_visible');
     SEARCH_ERROR.classList.remove('.search-error_visible');
     this.cardRenderCounter = 0;
-  }
-
-  setEventListeners() {
-    this._setHandlers([
-      {
-        element: SEARCH_BTN,
-        event: 'click',
-        callback: () => {
-          this.resetSearch();
-          this.renderLoader(true);
-          this.newsApi.getNews(this.renderResults, this.renderLoader, this.renderError);
-        },
-      },
-      {
-        element: BTN_SHOW_MORE,
-        event: 'click',
-        callback: () => {
-          this.showMore();
-      },
-    ])
   }
 }

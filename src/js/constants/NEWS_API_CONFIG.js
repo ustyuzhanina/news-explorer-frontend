@@ -6,7 +6,7 @@ const TODAY = new Date().toISOString().slice([0], [10]);
 const FROM_DAY = new Date();
 const WEEK_AGO_DATE = (new Date(FROM_DAY.setDate(FROM_DAY.getDate() - 7)))
   .toISOString().slice([0], [10]);
-console.log(SEARCH_BAR.value);
+
 const NEWS_API_CONFIG = {
   baseUrl: `${API_URL}${ENDPOINT}`,
   apiKey: 'b326bbabb1dd4436bca051964a795414',

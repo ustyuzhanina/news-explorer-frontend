@@ -2,7 +2,6 @@
 /* eslint-disable wrap-iife */
 import './index.css';
 
-import BaseComponent from './js/components/BaseComponent';
 import NewsApi from './js/api/NewsApi';
 import MainApi from './js/api/MainApi';
 import Form from './js/components/Form';
@@ -30,6 +29,9 @@ import {
 
 (function () {
   const newsApi = new NewsApi(NEWS_API_CONFIG);
-  const newsCardList = new NewsCardList(CARD_CONTAINER, newsApi);
   const mainApi = new MainApi(MAIN_API_CONFIG);
+  const form = new Form(SEARCH_BAR, SEARCH_BTN);
+
+  form.setEventListeners();
+
 })();

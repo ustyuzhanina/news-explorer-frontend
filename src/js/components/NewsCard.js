@@ -1,7 +1,9 @@
+import { NEWS_API_CONFIG } from '../constants/NEWS_API_CONFIG';
+
 export default class NewsCard {
   constructor(cardElementData) {
     // this.renderIcon = this.renderIcon.bind(this); // отвечает за отрисовку иконки карточки. У этой иконки три состояния: иконка незалогиненного пользователя, активная иконка залогиненного, неактивная иконка залогиненного.
-    this.keyword = 'экономика';
+    this.keyword = NEWS_API_CONFIG.params.q;
     this.source = cardElementData.source.name;
     this.title = cardElementData.title;
     this.text = cardElementData.description;
