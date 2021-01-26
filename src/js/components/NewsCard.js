@@ -1,26 +1,36 @@
 /* eslint-disable class-methods-use-this */
-import {CARD_CONTAINER, SEARCH_BAR} from '../constants/MARKUP_SELECTORS';
+import {
+  CARD_CONTAINER,
+  PAGE,
+  SEARCH_BAR,
+} from '../constants/MARKUP_SELECTORS';
 
 export default class NewsCard {
-  constructor(mainApi, savedNewsPage) {
-    // this.renderIcon = this.renderIcon.bind(this); // отвечает за отрисовку иконки карточки. У этой иконки три состояния: иконка незалогиненного пользователя, активная иконка залогиненного, неактивная иконка залогиненного.
+  constructor(mainApi, ProfilePage) {
+    this.switchIcons = this.switchIcons.bind(this);
     this.mainApi = mainApi;
-    this.savedNewsPage = savedNewsPage;
+    this.profilePage = ProfilePage;
     this.clickHandler = this.clickHandler.bind(this);
   }
 
-  create(title, date, description, image, source, sourceUrl, keyword, _id) {
+  create(article, keyword) {
+    const title = article.title;
+    const date = article.publishedAt;
+    const description = article.description;
+    const image = article.urlToImage;
+    const source = article.source.name;
+    const sourceUrl = article.url;
+
     const cardDate = (new Intl.DateTimeFormat('ru', {
       day: 'numeric',
       month: 'long',
       year: 'numeric',
     }).format(new Date(date))).replace(' г.', '').replace(' 20', ', 20');
 
-
     const template = `
-    <article class="card" data-id="${_id}">
+    <article class="card" data-id="" data-owner="">
     <div class="card__cover">
-      <img src="${image}" alt="" class="card__image">
+      <img src="${image}" alt="Без фотографии" class="card__image">
       <div class="card__controls">
         <button class="card__icon card__icon_trash">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -32,7 +42,7 @@ export default class NewsCard {
             <path d="M11.3822 15.7137L6 19.9425V4L18 4V19.9425L12.6178 15.7137L12 15.2283L11.3822 15.7137Z" stroke="#B6BCBF" stroke-width="2"/>
           </svg>
         </button>
-        <p class="card__icon card__icon_keyword">${keyword.toUppercase()}</p>
+        <p class="card__icon card__icon_keyword">${keyword.toUpperCase()}</p>
       </div>
     </div>
     <div class="card__description">
@@ -42,8 +52,101 @@ export default class NewsCard {
     </div>
     <a class="card__source" href="${sourceUrl}" target="_blank">${source}</a>
   </article>
-    `;
+    `.trim();
 
-    CARD_CONTAINER.insertAdjacentHTML('afterbegin', template.trim());
+    const element = document.createElement('div');
+    element.insertAdjacentHTML('afterbegin', template);
+
+    const newCard = element.firstChild;
+
+    this.switchIcons();
+
+    return newCard;
+  }
+
+  switchIcons() {
+    const trashIcons = document.querySelectorAll('.card__icon_trash');
+    const bookmarkIcons = document.querySelectorAll('.card__icon_bookmark');
+
+    if (!JSON.parse(localStorage.getItem('user'))) {
+      PAGE.classList.remove('page_logged-in');
+      bookmarkIcons.forEach((icon) => icon.setAttribute('disabled', true));
+    } else {
+      PAGE.classList.add('page_logged-in');
+      bookmarkIcons.forEach((icon) => {
+        icon.removeAttribute('disabled');
+        this.setEventListeners(icon);
+      });
+      trashIcons.forEach((icon) => {
+        this.setEventListeners(icon);
+      });
+    }
+  }
+
+  clickHandler(event) {
+    if (event.target.contains('card__icon_bookmark') || event.target.contains('card__icon_trash')) {
+      const card = event.target.closest('card');
+      const cardData = {
+        keyword: card.querySelector('.card__icon_keyword').textContent,
+        title: card.querySelector('.card__title').textContent,
+        description: card.querySelector('.card__info').textContent,
+        date: card.querySelector('.card__data').textContent,
+        source: card.querySelector('.card__source').textContent,
+        sourceUrl: card.querySelector('.card__source').href,
+        image: card.querySelector('.card__image').src,
+        id: card.dataset.id,
+      };
+      if (event.target.classList.contains('card__icon_bookmark_marked')) {
+        const clearData = () => {
+          card.dataset.id = '';
+          card.dataset.owner = '';
+          event.target.classList.remove('card__icon_bookmark_marked');
+        };
+        this.mainApi.removeArticle(card.dataset.id)
+          .then((res) => {
+            if (!res.ok) {
+              return Promise.reject(res.statusText);
+            }
+            return res.json();
+          })
+          .then(() => clearData())
+          .catch((err) => console.log(err));
+      } else if (event.target.classList.contains('card__icon_trash')) {
+        this.mainApi.removeArticle(card.dataset.id)
+          .then((res) => {
+            if (!res.ok) {
+              return Promise.reject(res.statusText);
+            }
+            return res.json();
+          })
+          .then(() => this.mainApi.getArticles())
+          .then((articles) => {
+            this.savedNewsPage.renderMarkup(articles);
+            CARD_CONTAINER.removeChild(card);
+          })
+          .catch((err) => console.log(err));
+      } else {
+        const fillInCard = (article) => {
+          card.dataset.id = article.article._id;
+          card.dataset.owner = article.article.owner;
+          event.target.classList.add('card__icon_bookmark_marked');
+        };
+        this.mainApi.createArticle(cardData)
+          .then((res) => {
+            if (res.ok) {
+              return res.json();
+            }
+            return Promise.reject(res.statusText);
+          })
+          .then((article) => {
+            fillInCard(article);
+          })
+          .catch((err) => console.log (err));
+      }
+    }
+  }
+
+  setEventListeners(icon) {
+    icon.addEventListener('click', (event) => this.clickHandler(event));
   }
 }

@@ -12,7 +12,7 @@ import Popup from './js/components/Popup';
 import { NEWS_API_CONFIG } from './js/constants/NEWS_API_CONFIG';
 import { MAIN_API_CONFIG } from './js/constants/MAIN_API_CONFIG';
 import { USER } from './js/constants/USER';
-import SavedNewsPage from './js/components/SavedNewsPage';
+import ProfilePage from './js/components/ProfilePage';
 import {
   CARD_CONTAINER,
   PAGE,
@@ -32,11 +32,17 @@ import {
 (function () {
   const newsApi = new NewsApi(NEWS_API_CONFIG);
   const mainApi = new MainApi(MAIN_API_CONFIG);
-  const form = new Form(SEARCH_BAR, SEARCH_BTN);
-  const savedNewsPage = new SavedNewsPage(USER);
-  const newsCard = new NewsCard(mainApi, savedNewsPage);
+  const profilePage = new ProfilePage(USER);
+  const newsCard = new NewsCard(mainApi, profilePage);
+  const cardList = new NewsCardList(newsCard, mainApi, newsApi);
+  const form = new Form(newsApi, cardList);
 
+  // if (!USER) {
+  //   header.render({ isLoggedin: false });
+  // } else {
+  //   header.render({ isLoggedin: true, userName: USER.name });
+  // }
 
   form.setEventListeners();
-  newsCard.setEventListeners();
+  cardList.setEventListeners();
 })();

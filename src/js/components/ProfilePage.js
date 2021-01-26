@@ -2,7 +2,7 @@
 import { sortByFrequency } from '../utils/sortByFrequency';
 import { INTRO } from '../constants/MARKUP_SELECTORS';
 
-export default class SavedNewsPage {
+export default class ProfilePage {
   constructor(user) {
     this.user = user;
     this.renderMarkup = this.renderMarkup.bind(this);

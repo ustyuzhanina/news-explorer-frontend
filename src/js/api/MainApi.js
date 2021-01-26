@@ -86,14 +86,7 @@ export default class MainApi {
         'Content-Type': this.headers['Content-Type'],
         Authorization: `Bearer ${token}`,
       },
-    })
-      .then((res) => this._getResponseData(res))
-      .catch((err) => {
-        if (err.message === 'Failed to fetch') {
-          return new Error('потом прописать сообщение об ошибке в константы');
-        }
-        return err;
-      });
+    });
   }
 
   createArticle(articleData, token) {
@@ -106,14 +99,7 @@ export default class MainApi {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(articleData),
-    })
-      .then((res) => this._getResponseData(res))
-      .catch((err) => {
-        if (err.message === 'Failed to fetch') {
-          return new Error('потом прописать сообщение об ошибке в константы');
-        }
-        return err;
-      });
+    });
   }
 
   removeArticle(articleId, token) {
@@ -125,13 +111,6 @@ export default class MainApi {
         'Content-Type': this.headers['Content-Type'],
         Authorization: `Bearer ${token}`,
       },
-    })
-      .then((res) => this._getResponseData(res))
-      .catch((err) => {
-        if (err.message === 'Failed to fetch') {
-          return new Error('потом прописать сообщение об ошибке в константы');
-        }
-        return err;
-      });
+    }); // cut to paste to newscard
   }
 }
