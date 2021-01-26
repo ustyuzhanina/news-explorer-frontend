@@ -12,18 +12,18 @@ import {
 } from '../constants/MARKUP_SELECTORS';
 
 export default class NewsCardList {
-  constructor(newsCard, mainApi, newsApi) { // принимает массив карточек, которые должны быть в списке при первой отрисовке.
+  constructor(newsCard, mainApi, newsApi) {
     this.cardCreator = newsCard;
     this.mainApi = mainApi;
     this.newsApi = newsApi;
     this.renderResults = this.renderResults.bind(this);
     this.renderLoader = this.renderLoader.bind(this);
     this.renderError = this.renderError.bind(this);
-    this.showMore = this.showMore.bind(this); // отвечает за функциональность кнопки «Показать ещё»
-    this.addCard = this.addCard.bind(this); // принимает экземпляр карточки и добавляет её в список
-    this.cardRenderCounter = 0;
+    this.showMore = this.showMore.bind(this);
+    this.addCard = this.addCard.bind(this);
     this.resetSearch = this.resetSearch.bind(this);
-    this.articles = null;
+    this.cardRenderCounter = 0;
+    this.waitingArticles = null;
     this.keyword = null;
   }
 
@@ -34,7 +34,6 @@ export default class NewsCardList {
 
   renderResults(articles, keyword) {
     this.keyword = keyword;
-    this.articles = articles;
 
     if (articles.length === 0) {
       SEARCH_RESULTS.classList.remove('search-results_visible');
@@ -53,6 +52,7 @@ export default class NewsCardList {
         const newCard = this.cardCreator.create(article, keyword);
         this.addCard(newCard);
       });
+      this.waitingArticles = articles.slice([3], [articles.length + 1]);
     }
   }
 
@@ -74,8 +74,8 @@ export default class NewsCardList {
   }
 
   showMore() {
-    this.renderResults(this.articles.slice([this.cardRenderCounter], [this.cardRenderCounter + 3]), this.keyword);
-    if (this.cardRenderCounter > (this.articles.length - 1)) {
+    this.renderResults(this.waitingArticles, this.keyword);
+    if (this.cardRenderCounter > (this.newsApi.cache.length - 1)) {
       BTN_SHOW_MORE.classList.remove('button_show-more_visible');
     }
   }
@@ -86,7 +86,7 @@ export default class NewsCardList {
     SEARCH_ERROR.classList.remove('search-error_visible');
     this.cardRenderCounter = 0;
     CARD_CONTAINER.textContent = '';
-    this.articles = null;
+    this.waitingArticles = null;
     this.keyword = null;
   }
 

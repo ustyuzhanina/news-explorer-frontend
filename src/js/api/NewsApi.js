@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-underscore-dangle */
 import removeQuotes from '../utils/removeQuotes';
-import {NEWS_API_ERROR} from '../constants/ERRORS';
+import { NEWS_API_ERROR } from '../constants/ERRORS';
 
 export default class NewsApi {
   constructor(config) {

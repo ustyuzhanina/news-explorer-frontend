@@ -56,11 +56,7 @@ export default class NewsCard {
 
     const element = document.createElement('div');
     element.insertAdjacentHTML('afterbegin', template);
-
     const newCard = element.firstChild;
-
-    this.switchIcons();
-
     return newCard;
   }
 
@@ -84,6 +80,8 @@ export default class NewsCard {
   }
 
   clickHandler(event) {
+    this.switchIcons(); // опредеелить правильное место для этой функции
+
     if (event.target.contains('card__icon_bookmark') || event.target.contains('card__icon_trash')) {
       const card = event.target.closest('card');
       const cardData = {

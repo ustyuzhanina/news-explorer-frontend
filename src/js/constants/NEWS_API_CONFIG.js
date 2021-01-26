@@ -14,7 +14,7 @@ const NEWS_API_CONFIG = {
     to: TODAY,
     language: 'ru',
     sortBy: 'popularity',
-    pageSize: 6, // 100
+    pageSize: 100,
   },
 };
 
