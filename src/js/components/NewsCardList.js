@@ -32,8 +32,8 @@ export default class NewsCardList {
     this.cardRenderCounter++;
   }
 
-  renderResults(articles, keyword) {
-    this.keyword = keyword;
+  renderResults(articles) {
+    this.keyword = this.newsApi.keyword;
 
     if (articles.length === 0) {
       SEARCH_RESULTS.classList.remove('search-results_visible');
@@ -49,7 +49,7 @@ export default class NewsCardList {
       }
 
       articles.slice([0], [3]).forEach((article) => {
-        const newCard = this.cardCreator.create(article, keyword);
+        const newCard = this.cardCreator.create(article, this.newsApi.keyword);
         this.addCard(newCard);
       });
       this.waitingArticles = articles.slice([3], [articles.length + 1]);

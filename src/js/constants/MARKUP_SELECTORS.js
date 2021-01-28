@@ -15,6 +15,9 @@ const PRELOADER = document.querySelector('.preloader');
 const NOT_FOUND = document.querySelector('.not-found');
 const INTRO = document.querySelector('.intro');
 
+// popup selector
+const POPUP = document.querySelector('.popup');
+
 const CARDS_RENDER_QTY = 3;
 
 export {
@@ -35,4 +38,5 @@ export {
   NOT_FOUND,
   CARDS_RENDER_QTY,
   INTRO,
+  POPUP,
 };

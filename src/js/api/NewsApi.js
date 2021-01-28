@@ -15,10 +15,15 @@ export default class NewsApi {
     this._getResponseData = this._getResponseData.bind(this);
     this.getNews = this.getNews.bind(this);
     this._cache = null;
+    this._keyword = null;
   }
 
   get cache() {
     return this._cache;
+  }
+
+  get keyword() {
+    return this._keyword;
   }
 
   _getResponseData(res) {
@@ -29,11 +34,12 @@ export default class NewsApi {
   }
 
   getNews(keyword, cardList) {
+    this._keyword = keyword;
     const header = new Headers();
     header.append('x-api-key', this.apiKey);
 
     const url = `
-    ${removeQuotes(this.baseUrl)}?q=${keyword}&from=${this.from}&to=${this.to}&language=${this.language}&sortBy=${this.sortBy}&pageSize=${this.pageSize}
+    ${removeQuotes(this.baseUrl)}?q=${this.keyword}&from=${this.from}&to=${this.to}&language=${this.language}&sortBy=${this.sortBy}&pageSize=${this.pageSize}
     `;
     const req = new Request(url.trim());
 
@@ -45,7 +51,7 @@ export default class NewsApi {
         this._cache = obj.articles;
         console.log(this.cache);
         cardList.renderLoader(false);
-        cardList.renderResults(this.cache, keyword);
+        cardList.renderResults(this.cache);
       })
       .catch((err) => cardList.renderError(err));
   }

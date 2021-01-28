@@ -37,8 +37,13 @@ export default class Form {
   setEventListeners() {
     this.searchBar.addEventListener('input', () => this.validateSearch());
     this.searchBtn.addEventListener('click', () => {
+      SEARCH_FORM.setAttribute('disabled', true);
+
       this.cardList.renderLoader(true);
       this.newsApi.getNews(this.searchBar.value, this.cardList);
+
+      SEARCH_FORM.removeAttribute('disabled');
+
       this._clear();
       this.cardList.resetSearch();
     });

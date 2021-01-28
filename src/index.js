@@ -8,7 +8,8 @@ import Form from './js/components/Form';
 import Header from './js/components/Header';
 import NewsCard from './js/components/NewsCard';
 import NewsCardList from './js/components/NewsCardList';
-import Popup from './js/components/Popup';
+import PopupEnter from './js/components/PopupEnter';
+import PopupRegister from './js/components/PopupRegister';
 import { NEWS_API_CONFIG } from './js/constants/NEWS_API_CONFIG';
 import { MAIN_API_CONFIG } from './js/constants/MAIN_API_CONFIG';
 import { USER } from './js/constants/USER';
@@ -27,6 +28,7 @@ import {
   BTN_SHOW_MORE,
   PRELOADER,
   NOT_FOUND,
+  POPUP,
 } from './js/constants/MARKUP_SELECTORS';
 
 (function () {
@@ -36,6 +38,7 @@ import {
   const newsCard = new NewsCard(mainApi, profilePage);
   const cardList = new NewsCardList(newsCard, mainApi, newsApi);
   const form = new Form(newsApi, cardList);
+  const popupEnter = new PopupEnter();
 
   // if (!USER) {
   //   header.render({ isLoggedin: false });
@@ -45,4 +48,5 @@ import {
 
   form.setEventListeners();
   cardList.setEventListeners();
+  popupEnter.setEventListeners();
 })();
