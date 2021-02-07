@@ -5,3 +5,7 @@
   top: -24px;
   left: calc(100%/2 - 96px) !important;
 }
+
+.error_general_visible {
+  display: block;
+}

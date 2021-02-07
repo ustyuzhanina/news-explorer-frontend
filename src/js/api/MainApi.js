@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 /* eslint-disable no-underscore-dangle */
 export default class MainApi {
   constructor(config) {
@@ -15,22 +16,29 @@ export default class MainApi {
 
   _getResponseData(res) {
     if (!res.ok) {
-      return Promise.reject(`Ошибка: ${res.status}`);
+      return Promise.reject(new Error(`Ошибка: ${res.status}`));
     }
     return res.json();
   }
 
   // methods for users' data
 
-  signup(data) {
+  signup(email, password, name, setServerError) {
     const url = `${this.baseUrl}/signup`;
+    const fullHeaders = this.headers.append('credentials', 'include');
+    const userData = {
+      email,
+      password,
+      name,
+    };
 
     return fetch(url, {
       method: 'POST',
-      headers: this.headers,
-      body: JSON.stringify(data),
+      headers: fullHeaders,
+      body: JSON.stringify(userData),
     })
       .then((res) => this._getResponseData(res))
+      .then((res) => console.log(res))
       .catch((err) => {
         if (err.message === 'Failed to fetch') {
           return new Error('потом прописать сообщение об ошибке в константы');

@@ -1,4 +1,7 @@
+/* eslint-disable class-methods-use-this */
 /* eslint-disable no-underscore-dangle */
+import activateInputError from '../utils/activateInputError';
+import resetError from '../utils/resetError';
 import {
   SEARCH_BAR,
   SEARCH_BTN,
@@ -12,11 +15,25 @@ export default class Form {
     this.searchForm = SEARCH_FORM;
     this.newsApi = newsApi;
     this.cardList = cardList;
-    // this.setServerError = this.setServerError.bind(this);
-    // this._validateInputElement = this._validateInputElement.bind(this);
-    // this._validateForm = this._validateForm.bind(this);
+    this._validateInputElement = this._validateInputElement.bind(this);
+    this.validateForm = this.validateForm.bind(this);
     this._clear = this._clear.bind(this);
-    // this._getInfo = this._getInfo.bind(this);
+  }
+
+  _validateInputElement(input) {
+    const errorElement = document.querySelector(`#error-${input.id}`);
+
+    if (!input.checkValidity()) {
+      errorElement.textContent = input.validationMessage;
+      activateInputError(input);
+      return false;
+    }
+    return true;
+  }
+
+  validateForm(e) {
+    resetError(e.target, 'input-container_invalid');
+    this._validateInputElement(e.target);
   }
 
   validateSearch() {
@@ -37,12 +54,12 @@ export default class Form {
   setEventListeners() {
     this.searchBar.addEventListener('input', () => this.validateSearch());
     this.searchBtn.addEventListener('click', () => {
-      SEARCH_FORM.setAttribute('disabled', true);
+      this.searchForm.setAttribute('disabled', true);
 
       this.cardList.renderLoader(true);
       this.newsApi.getNews(this.searchBar.value, this.cardList);
 
-      SEARCH_FORM.removeAttribute('disabled');
+      this.searchForm.removeAttribute('disabled');
 
       this._clear();
       this.cardList.resetSearch();

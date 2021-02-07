@@ -5,3 +5,7 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+.popup__fieldset_invalid {
+  background-color: lightgray;
+}

@@ -7,6 +7,7 @@ const NAVBAR = document.querySelector('.navbar');
 const NAVBAR_SHOW_MENU_BTN = document.querySelector('.navbar__show-menu-btn');
 const NAVBAR_BTN_AUTH = document.querySelector('.navbar__btn_auth');
 const NAVBAR_BTN_LOGOUT = document.querySelector('.navbar__btn_logout');
+const NAVBAR_USERNAME = document.querySelector('.navbar__username');
 const SEARCH_FORM = document.querySelector('.search__box');
 const SEARCH_BAR = document.querySelector('.search__bar');
 const SEARCH_BTN = document.querySelector('.search__button');
@@ -15,8 +16,10 @@ const PRELOADER = document.querySelector('.preloader');
 const NOT_FOUND = document.querySelector('.not-found');
 const INTRO = document.querySelector('.intro');
 
-// popup selector
-const POPUP = document.querySelector('.popup');
+// popup selectors
+const POPUP_ENTER = document.querySelector('.popup_enter');
+const POPUP_REGISTER = document.querySelector('.popup_register');
+const POPUP_SUCCESS = document.querySelector('.popup_success-reg');
 
 const CARDS_RENDER_QTY = 3;
 
@@ -30,6 +33,7 @@ export {
   NAVBAR_SHOW_MENU_BTN,
   NAVBAR_BTN_AUTH,
   NAVBAR_BTN_LOGOUT,
+  NAVBAR_USERNAME,
   SEARCH_FORM,
   SEARCH_BAR,
   SEARCH_BTN,
@@ -38,5 +42,7 @@ export {
   NOT_FOUND,
   CARDS_RENDER_QTY,
   INTRO,
-  POPUP,
+  POPUP_ENTER,
+  POPUP_REGISTER,
+  POPUP_SUCCESS,
 };

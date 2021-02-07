@@ -14,10 +14,6 @@
   left: 0;
 }
 
-.popup__input:invalid:not(:placeholder-shown)+.error {
-  display: block;
-}
-
-.error.error_visible {
+.popup__fieldset_invalid .error {
   display: block;
 }
