@@ -16,7 +16,7 @@ export default class MainApi {
 
   _getResponseData(res) {
     if (!res.ok) {
-      return Promise.reject(new Error(`Ошибка: ${res.status}`));
+      return Promise.reject(res.status);
     }
     return res.json();
   }
@@ -25,7 +25,6 @@ export default class MainApi {
 
   signup(email, password, name, setServerError) {
     const url = `${this.baseUrl}/signup`;
-    const fullHeaders = this.headers.append('credentials', 'include');
     const userData = {
       email,
       password,
@@ -34,25 +33,25 @@ export default class MainApi {
 
     return fetch(url, {
       method: 'POST',
-      headers: fullHeaders,
+      headers: this.headers,
+      credentials: 'include',
       body: JSON.stringify(userData),
     })
       .then((res) => this._getResponseData(res))
-      .then((res) => console.log(res))
       .catch((err) => {
-        if (err.message === 'Failed to fetch') {
-          return new Error('потом прописать сообщение об ошибке в константы');
-        }
-        return err;
+        if (err === 409) {
+          setServerError();
+        } else { console.log(`Код ошибки ${err}`); }
       });
   }
 
-  signin(userData) {
+  signin(email, password, setServerError) {
     const url = `${this.baseUrl}/signin`;
 
     return fetch(url, {
       method: 'POST',
       headers: this.headers,
+      credentials: 'include',
       body: JSON.stringify(userData),
     })
       .then((res) => this._getResponseData(res))
@@ -64,15 +63,15 @@ export default class MainApi {
       });
   }
 
-  getUserData(token) {
+  getUserData() {
     const url = `${this.baseUrl}/users/me`;
 
     return fetch(url, {
       method: 'GET',
       headers: {
         'Content-Type': this.headers['Content-Type'],
-        Authorization: `Bearer ${token}`,
       },
+      credentials: 'include',
     })
       .then((res) => this._getResponseData(res))
       .catch((err) => {
@@ -85,40 +84,40 @@ export default class MainApi {
 
   // methods for articles
 
-  getArticles(token) {
+  getArticles() {
     const url = `${this.baseUrl}/articles`;
 
     return fetch(url, {
       method: 'GET',
       headers: {
         'Content-Type': this.headers['Content-Type'],
-        Authorization: `Bearer ${token}`,
       },
+      credentials: 'include',
     });
   }
 
-  createArticle(articleData, token) {
+  createArticle(articleData) {
     const url = `${this.baseUrl}/articles`;
 
     return fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': this.headers['Content-Type'],
-        Authorization: `Bearer ${token}`,
       },
+      credentials: 'include',
       body: JSON.stringify(articleData),
     });
   }
 
-  removeArticle(articleId, token) {
+  removeArticle(articleId) {
     const url = `${this.baseUrl}/articles/${articleId}`;
 
     return fetch(url, {
       method: 'DELETE',
       headers: {
         'Content-Type': this.headers['Content-Type'],
-        Authorization: `Bearer ${token}`,
       },
+      credentials: 'include',
     }); // cut to paste to newscard
   }
 }

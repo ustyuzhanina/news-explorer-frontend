@@ -21,3 +21,7 @@
 .popup__input:focus {
   padding-left: 6px;
 }
+
+.popup__fieldset_invalid .popup__input {
+  background-color: blanchedalmond;
+}

@@ -21,10 +21,10 @@ export default class Form {
   }
 
   _validateInputElement(input) {
-    const errorElement = document.querySelector(`#error-${input.id}`);
+    // const errorElement = input.parentElement.querySelector(`#error-${input.name}`);
 
     if (!input.checkValidity()) {
-      errorElement.textContent = input.validationMessage;
+      // errorElement.style.display = 'block';
       activateInputError(input);
       return false;
     }
@@ -32,7 +32,7 @@ export default class Form {
   }
 
   validateForm(e) {
-    resetError(e.target, 'input-container_invalid');
+    resetError(e.target);
     this._validateInputElement(e.target);
   }
 

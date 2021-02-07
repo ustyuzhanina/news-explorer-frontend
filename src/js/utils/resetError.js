@@ -1,6 +1,3 @@
-export default function resetError(input, className) {
-  if (input.parentNode.classList.contains(className)) {
-    input.parentNode.classList.remove(className);
-    input.textContent = '';
-  }
+export default function resetError(input) {
+  input.parentElement.classList.remove('popup__fieldset_invalid');
 }

@@ -21,8 +21,7 @@ export default class Popup {
     this.close = this.close.bind(this);
   }
 
-  setServerError(err) {
-    this.serverError.textContent = err;
+  setServerError() {
     this.serverError.classList.add('error_general_visible');
   }
 
@@ -60,7 +59,7 @@ export default class Popup {
   clearContent() {
     const inputs = this.form.querySelectorAll('input');
     inputs.forEach((input) => {
-      resetError(input, 'popup__fieldset_invalid');
+      resetError(input);
     });
     this.form.reset();
     this.serverError.classList.remove('error_general_visible');
