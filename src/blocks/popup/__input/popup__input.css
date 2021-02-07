@@ -17,3 +17,7 @@
 .popup__input::placeholder {
   color: rgba(0, 0, 0, .6);
 }
+
+.popup__input:focus {
+  padding-left: 6px;
+}
