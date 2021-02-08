@@ -1,3 +1,6 @@
-const USER = JSON.parse(localStorage.getItem('user'));
+const USER = {
+  email: null,
+  name: null,
+};
 
 export { USER };

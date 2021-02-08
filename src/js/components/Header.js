@@ -6,6 +6,8 @@ import {
   NAVBAR_USERNAME,
   NAVBAR,
 } from '../constants/MARKUP_SELECTORS';
+import { USER } from '../constants/USER';
+import { MAIN_API_CONFIG } from '../constants/MAIN_API_CONFIG';
 
 export default class Header {
   constructor({ headerColor }, newsCardClass) {
@@ -14,18 +16,18 @@ export default class Header {
     this.cardClass = newsCardClass;
   }
 
-  render({ isLoggedin, userName }) {
+  render(userName) {
     HEADER.style.backgroundColor = this.headerColor;
 
-    if (isLoggedin === false) {
+    if (!userName) {
       PAGE.classList.remove('page_logged-in');
     } else {
       NAVBAR_USERNAME.textContent = userName;
       PAGE.classList.add('page_logged-in');
 
       NAVBAR_BTN_LOGOUT.addEventListener('click', () => {
-        window.location.href = '../';
         this.logout();
+        window.location.href = '../';
       });
     }
 
@@ -35,10 +37,11 @@ export default class Header {
   }
 
   logout() {
-    PAGE.classList.remove('page_logged-in');
-    this.render({ isLoggedin: false });
-    localStorage.removeItem('user');
+    // перенести слушатель события в index и создать новый route в api на удаление куки
+    USER.name = null;
+    USER.email = null;
+    this.render(USER.name);
     NAVBAR_USERNAME.textContent = '';
-    this.cardClass.switchIcons();
+    // this.cardClass.switchIcons();
   }
 }

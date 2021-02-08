@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable max-len */
 /* eslint-disable func-names */
 /* eslint-disable wrap-iife */
@@ -24,6 +25,14 @@ import {
   NAVBAR_BTN_AUTH,
   NAVBAR,
 } from './js/constants/MARKUP_SELECTORS';
+import {
+  NOT_FOUND_ERROR,
+  BAD_REQUEST_ERROR,
+  AUTH_ERROR,
+  FORBIDDEN,
+  MAIN_API_ERROR,
+  MONGO_ERROR,
+} from './js/constants/ERRORS';
 
 (function () {
   const newsApi = new NewsApi(NEWS_API_CONFIG);
@@ -33,30 +42,79 @@ import {
   const header = new Header({ headerColor: 'transparent' }, newsCard);
   const cardList = new NewsCardList(newsCard, mainApi, newsApi);
   const form = new Form(newsApi, cardList);
-  const popupRegister = new PopupRegister(mainApi, form, POPUP_REGISTER);
+  const popupRegister = new PopupRegister(form, POPUP_REGISTER);
   const popupSuccess = new PopupSuccess(POPUP_SUCCESS);
-  const popupEnter = new PopupEnter(form, mainApi, newsCard, header, POPUP_ENTER);
+  const popupEnter = new PopupEnter(form, POPUP_ENTER);
 
   function switchPopups(from, to) {
     from.close();
     to.open();
   }
 
-  if (!USER) {
-    header.render({ isLoggedin: false });
-  } else {
-    header.render({ isLoggedin: true, userName: USER.name });
+  function setSubmitListenerToPopupEnter() {
+    popupEnter.form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const userData = popupEnter.pickUpData(e.target);
+      mainApi.signin(userData)
+        .then((jwt) => {
+          popupEnter.close();
+          mainApi.getUserData()
+            .then((userObj) => {
+              USER.name = userObj.name;
+              USER.email = userObj.email;
+              console.log(USER);
+              header.render(USER.name);
+            })
+            .catch((err) => console.log(`Код ошибки: ${err}`));
+          console.log(jwt);
+        })
+        .catch((err) => {
+          if (err === 401) {
+            popupEnter.setServerError(AUTH_ERROR.invalidCreds);
+          } else { popupEnter.setServerError(MAIN_API_ERROR); }
+        });
+    });
   }
 
-  NAVBAR_BTN_AUTH.addEventListener('click', () => popupEnter.open());
-
-  // переключатели для попапов
-  popupEnter.linkBtn.addEventListener('click', () => switchPopups(popupEnter, popupRegister));
-  popupRegister.linkBtn.addEventListener('click', () => switchPopups(popupRegister, popupEnter));
-  popupSuccess.linkBtn.addEventListener('click', () => switchPopups(popupSuccess, popupEnter));
+  header.render(USER.name);
 
   // общие слушатели событий
   form.setEventListeners();
   cardList.setEventListeners();
   // newsCard.setEventListeners();
+
+  NAVBAR_BTN_AUTH.addEventListener('click', () => {
+    popupEnter.open();
+    setSubmitListenerToPopupEnter();
+  });
+
+  // переключатели для попапов
+  popupEnter.linkBtn.addEventListener('click', () => {
+    switchPopups(popupEnter, popupRegister);
+
+    popupRegister.form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const userData = popupRegister.pickUpData(e.target);
+      mainApi.signup(userData)
+        .then((regData) => {
+          switchPopups(popupRegister, popupSuccess);
+          console.log(regData);
+        })
+        .catch((err) => {
+          if (err === 409) {
+            popupRegister.setServerError(MONGO_ERROR.usedEmailErr);
+          } else { popupRegister.setServerError(MAIN_API_ERROR); }
+        });
+    });
+  });
+
+  popupRegister.linkBtn.addEventListener('click', () => {
+    switchPopups(popupRegister, popupEnter);
+    setSubmitListenerToPopupEnter();
+  });
+
+  popupSuccess.linkBtn.addEventListener('click', () => {
+    switchPopups(popupSuccess, popupEnter);
+    setSubmitListenerToPopupEnter();
+  });
 })();

@@ -1,5 +1,14 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-underscore-dangle */
+import {
+  NOT_FOUND_ERROR,
+  BAD_REQUEST_ERROR,
+  AUTH_ERROR,
+  FORBIDDEN,
+  MAIN_API_ERROR,
+  MONGO_ERROR,
+ } from '../constants/ERRORS';
+
 export default class MainApi {
   constructor(config) {
     this.baseUrl = config.url;
@@ -23,7 +32,7 @@ export default class MainApi {
 
   // methods for users' data
 
-  signup(email, password, name, setServerError) {
+  signup({ email, password, name }) {
     const url = `${this.baseUrl}/signup`;
     const userData = {
       email,
@@ -37,16 +46,15 @@ export default class MainApi {
       credentials: 'include',
       body: JSON.stringify(userData),
     })
-      .then((res) => this._getResponseData(res))
-      .catch((err) => {
-        if (err === 409) {
-          setServerError();
-        } else { console.log(`Код ошибки ${err}`); }
-      });
+      .then((res) => this._getResponseData(res));
   }
 
-  signin(email, password, setServerError) {
+  signin({ email, password }) {
     const url = `${this.baseUrl}/signin`;
+    const userData = {
+      email,
+      password,
+    };
 
     return fetch(url, {
       method: 'POST',
@@ -54,13 +62,7 @@ export default class MainApi {
       credentials: 'include',
       body: JSON.stringify(userData),
     })
-      .then((res) => this._getResponseData(res))
-      .catch((err) => {
-        if (err.message === 'Failed to fetch') {
-          return new Error('потом прописать сообщение об ошибке в константы');
-        }
-        return err;
-      });
+      .then((res) => this._getResponseData(res));
   }
 
   getUserData() {
@@ -73,13 +75,7 @@ export default class MainApi {
       },
       credentials: 'include',
     })
-      .then((res) => this._getResponseData(res))
-      .catch((err) => {
-        if (err.message === 'Failed to fetch') {
-          return new Error('потом прописать сообщение об ошибке в константы');
-        }
-        return err;
-      });
+      .then((res) => this._getResponseData(res));
   }
 
   // methods for articles

@@ -1,16 +1,13 @@
+/* eslint-disable class-methods-use-this */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable max-len */
 import Popup from './Popup';
 
 export default class PopupEnter extends Popup {
-  constructor(formClass, mainApiClass, cardClass, headerClass, popup) {
+  constructor(formClass, popup) {
     super(popup, formClass);
-    this.mainApi = mainApiClass;
-    this.setServerError = this.setServerError.bind(this);
-    this.setSuccessSignIn = this.setSuccessSignIn.bind(this);
-    this.headerClass = headerClass;
-    this.newsCardClass = cardClass;
     this.linkBtn = this.popup.querySelector('.popup__input-link');
+    this.pickUpData = this.pickUpData.bind(this);
   }
 
   setSuccessSignIn(name) {
@@ -19,8 +16,14 @@ export default class PopupEnter extends Popup {
     // this.newsCardClass.switchIcons();
   }
 
+  pickUpData(form) {
+    const email = form.email.value;
+    const password = form.password.value;
+    return { email, password };
+  }
+
   submit(e) {
     e.preventDefault();
-    this.mainApi.signin(this.form.elements.email.value, this.form.elements.password.value, this.setServerError, this.setSuccessSignIn);
+    this.mainApi.signin();
   }
 }

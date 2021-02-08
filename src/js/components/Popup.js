@@ -12,7 +12,7 @@ export default class Popup {
     this.formClass = formClass;
     this.form = null;
     this.serverError = null;
-    this.closeBtn = this.popup.querySelector('.popup__close');
+    this.closeBtn = null;
     this.submitBtn = null;
     this.clearContent = this.clearContent.bind(this);
     this.setServerError = this.setServerError.bind(this);
@@ -21,7 +21,8 @@ export default class Popup {
     this.close = this.close.bind(this);
   }
 
-  setServerError() {
+  setServerError(errText) {
+    this.serverError.textContent = errText;
     this.serverError.classList.add('error_general_visible');
   }
 
@@ -29,6 +30,7 @@ export default class Popup {
     this.form = this.popup.querySelector('.popup__form');
     this.serverError = this.popup.querySelector('.error_general');
     this.submitBtn = this.popup.querySelector('.popup__button');
+    this.closeBtn = this.popup.querySelector('.popup__close');
 
     this.setEventListeners();
     this.popup.classList.add('popup_is-opened');
@@ -63,6 +65,7 @@ export default class Popup {
     });
     this.form.reset();
     this.serverError.classList.remove('error_general_visible');
+    this.serverError.textContent = '';
     disableSubmitBtn(this.form);
   }
 
@@ -84,7 +87,6 @@ export default class Popup {
     this.closeBtn.addEventListener('click', this.close);
     document.addEventListener('keydown', (e) => this._handleKeyDown(e));
     document.addEventListener('click', (e) => this._handleMouseDown(e));
-    this.submitBtn.addEventListener('click', (e) => this.submit(e));
     this.form.addEventListener('input', (e) => { this.formClass.validateForm(e); this.resetSubmitBtn(); });
   }
 }

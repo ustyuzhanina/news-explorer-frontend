@@ -17,14 +17,10 @@ export default class Form {
     this.cardList = cardList;
     this._validateInputElement = this._validateInputElement.bind(this);
     this.validateForm = this.validateForm.bind(this);
-    this._clear = this._clear.bind(this);
   }
 
   _validateInputElement(input) {
-    // const errorElement = input.parentElement.querySelector(`#error-${input.name}`);
-
     if (!input.checkValidity()) {
-      // errorElement.style.display = 'block';
       activateInputError(input);
       return false;
     }
@@ -47,10 +43,6 @@ export default class Form {
     return true;
   }
 
-  _clear() {
-    this.searchForm.reset();
-  }
-
   setEventListeners() {
     this.searchBar.addEventListener('input', () => this.validateSearch());
     this.searchBtn.addEventListener('click', () => {
@@ -61,7 +53,7 @@ export default class Form {
 
       this.searchForm.removeAttribute('disabled');
 
-      this._clear();
+      this.searchForm.reset();
       this.cardList.resetSearch();
     });
   }
