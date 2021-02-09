@@ -78,6 +78,16 @@ export default class MainApi {
       .then((res) => this._getResponseData(res));
   }
 
+  signout() {
+    const url = `${this.baseUrl}/signout`;
+
+    return fetch(url, {
+      method: 'GET',
+      credentials: 'include',
+    })
+      .then((res) => this._getResponseData(res));
+  }
+
   // methods for articles
 
   getArticles() {
@@ -89,7 +99,8 @@ export default class MainApi {
         'Content-Type': this.headers['Content-Type'],
       },
       credentials: 'include',
-    });
+    })
+      .then((res) => this._getResponseData(res));
   }
 
   createArticle(articleData) {
@@ -102,7 +113,8 @@ export default class MainApi {
       },
       credentials: 'include',
       body: JSON.stringify(articleData),
-    });
+    })
+      .then((res) => this._getResponseData(res));
   }
 
   removeArticle(articleId) {
@@ -114,6 +126,7 @@ export default class MainApi {
         'Content-Type': this.headers['Content-Type'],
       },
       credentials: 'include',
-    }); // cut to paste to newscard
+    })
+      .then((res) => this._getResponseData(res));
   }
 }

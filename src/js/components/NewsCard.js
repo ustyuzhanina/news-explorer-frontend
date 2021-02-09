@@ -6,10 +6,9 @@ import {
 } from '../constants/MARKUP_SELECTORS';
 
 export default class NewsCard {
-  constructor(mainApi, ProfilePage) {
+  constructor(mainApi) {
     this.switchIcons = this.switchIcons.bind(this);
     this.mainApi = mainApi;
-    this.profilePage = ProfilePage;
     this.clickHandler = this.clickHandler.bind(this);
   }
 

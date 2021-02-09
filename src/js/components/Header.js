@@ -1,19 +1,19 @@
 import {
   PAGE,
   HEADER,
-  NAVBAR_SHOW_MENU_BTN,
-  NAVBAR_BTN_LOGOUT,
   NAVBAR_USERNAME,
+  NAVBAR_BTN_LOGOUT,
+  NAVBAR_SHOW_MENU_BTN,
   NAVBAR,
 } from '../constants/MARKUP_SELECTORS';
 import { USER } from '../constants/USER';
-import { MAIN_API_CONFIG } from '../constants/MAIN_API_CONFIG';
 
 export default class Header {
-  constructor({ headerColor }, newsCardClass) {
+  constructor({ headerColor }, newsCardClass, mainApiClass) {
     this.headerColor = headerColor;
     this.page = PAGE;
     this.cardClass = newsCardClass;
+    this.apiClass = mainApiClass;
   }
 
   render(userName) {
@@ -22,26 +22,26 @@ export default class Header {
     if (!userName) {
       PAGE.classList.remove('page_logged-in');
     } else {
-      NAVBAR_USERNAME.textContent = userName;
       PAGE.classList.add('page_logged-in');
 
       NAVBAR_BTN_LOGOUT.addEventListener('click', () => {
-        this.logout();
-        window.location.href = '../';
+        this.apiClass.signout()
+          .then((res) => {
+            console.log(res.message);
+            window.location.href = '../';
+            USER.name = null;
+            USER.email = null;
+            this.render(USER.name);
+            // отключить кнопки на карточках
+          })
+          .catch((err) => console.log(err));
       });
     }
 
     NAVBAR_SHOW_MENU_BTN.addEventListener('click', () => {
       NAVBAR.classList.toggle('navbar_opened');
     });
-  }
 
-  logout() {
-    // перенести слушатель события в index и создать новый route в api на удаление куки
-    USER.name = null;
-    USER.email = null;
-    this.render(USER.name);
-    NAVBAR_USERNAME.textContent = '';
-    // this.cardClass.switchIcons();
+    NAVBAR_USERNAME.textContent = userName;
   }
 }

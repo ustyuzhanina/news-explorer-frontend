@@ -3,8 +3,8 @@ import { sortByFrequency } from '../utils/sortByFrequency';
 import { INTRO } from '../constants/MARKUP_SELECTORS';
 
 export default class ProfilePage {
-  constructor(user) {
-    this.user = user;
+  constructor() {
+    this.user = null;
     this.renderMarkup = this.renderMarkup.bind(this);
   }
 
@@ -20,7 +20,14 @@ export default class ProfilePage {
 
     if (totalArticlesN === 0) {
       headerEnding = 'еще нет сохранённых статей';
-      document.querySelector('.intro__keywords-summary').getElementsByClassName.display = 'none';
+      keywordsTemplate = `
+      <div class="intro__container">
+        <h2 class="intro__title">Сохранённые статьи</h2>
+        <p class="intro__greeting">
+          ${this.user}, у вас ${headerEnding}
+        </p>
+      </div>
+      `;
     } else {
       switch (totalArticlesNEnd) {
         case 1:
@@ -45,7 +52,7 @@ export default class ProfilePage {
           <div class="intro__container">
             <h2 class="intro__title">Сохранённые статьи</h2>
             <p class="intro__greeting">
-              Грета, у вас ${headerEnding}
+            ${this.user}, у вас ${headerEnding}
             </p>
             <p class="intro__keywords-summary">
               По ключевому слову:
@@ -60,14 +67,29 @@ export default class ProfilePage {
             <div class="intro__container">
               <h2 class="intro__title">Сохранённые статьи</h2>
               <p class="intro__greeting">
-                Грета, у вас ${headerEnding}
+              ${this.user}, у вас ${headerEnding}
               </p>
               <p class="intro__keywords-summary">
                 По ключевым словам:
-                <span class="intro__keywords">${sortedKeywords[0]} и ${sortedKeywords[1]}</span>
+                <span class="intro__keywords">${sortedKeywords[0]}, ${sortedKeywords[1]}</span>
               </p>
             </div>
             `;
+          break;
+
+        case 3:
+          keywordsTemplate = `
+              <div class="intro__container">
+                <h2 class="intro__title">Сохранённые статьи</h2>
+                <p class="intro__greeting">
+                ${this.user}, у вас ${headerEnding}
+                </p>
+                <p class="intro__keywords-summary">
+                  По ключевым словам:
+                  <span class="intro__keywords">${sortedKeywords[0]}, ${sortedKeywords[1]} и ${sortedKeywords[2]}</span>
+                </p>
+              </div>
+              `;
           break;
 
         default:
@@ -75,13 +97,13 @@ export default class ProfilePage {
             <div class="intro__container">
                <h2 class="intro__title">Сохранённые статьи</h2>
               <p class="intro__greeting">
-                Грета, у вас ${headerEnding}
+              ${this.user}, у вас ${headerEnding}
               </p>
                <p class="intro__keywords-summary">
                 По ключевым словам:
                 <span class="intro__keywords">${sortedKeywords[0]}, ${sortedKeywords[1]}</span>
                 и
-                <span class="intro__rest-qty">${sortedKeywords.length() - 2} -м другим</span>
+                <span class="intro__rest-qty">${sortedKeywords.length() - 2} другим</span>
                </p>
              </div>
              `;
@@ -90,7 +112,8 @@ export default class ProfilePage {
     return keywordsTemplate;
   }
 
-  renderMarkup(articles) {
+  renderMarkup(articles, userName) {
+    this.user = userName;
     INTRO.insertAdjacentHTML('afterbegin', this._createMarkup(articles));
   }
 }

@@ -18,12 +18,10 @@ import { MAIN_API_CONFIG } from './js/constants/MAIN_API_CONFIG';
 import { USER } from './js/constants/USER';
 import ProfilePage from './js/components/ProfilePage';
 import {
-  PAGE,
   POPUP_ENTER,
   POPUP_REGISTER,
   POPUP_SUCCESS,
   NAVBAR_BTN_AUTH,
-  NAVBAR,
 } from './js/constants/MARKUP_SELECTORS';
 import {
   NOT_FOUND_ERROR,
@@ -37,9 +35,8 @@ import {
 (function () {
   const newsApi = new NewsApi(NEWS_API_CONFIG);
   const mainApi = new MainApi(MAIN_API_CONFIG);
-  const profilePage = new ProfilePage(USER);
-  const newsCard = new NewsCard(mainApi, profilePage);
-  const header = new Header({ headerColor: 'transparent' }, newsCard);
+  const newsCard = new NewsCard(mainApi);
+  const header = new Header({ headerColor: 'transparent' }, newsCard, mainApi);
   const cardList = new NewsCardList(newsCard, mainApi, newsApi);
   const form = new Form(newsApi, cardList);
   const popupRegister = new PopupRegister(form, POPUP_REGISTER);
@@ -51,6 +48,16 @@ import {
     to.open();
   }
 
+  function renderPage() {
+    mainApi.getUserData()
+      .then((userObj) => {
+        USER.name = userObj.name;
+        USER.email = userObj.email;
+      })
+      .catch((err) => console.log(`Код ошибки: ${err}`))
+      .finally(() => header.render(USER.name));
+  }
+
   function setSubmitListenerToPopupEnter() {
     popupEnter.form.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -58,15 +65,7 @@ import {
       mainApi.signin(userData)
         .then((jwt) => {
           popupEnter.close();
-          mainApi.getUserData()
-            .then((userObj) => {
-              USER.name = userObj.name;
-              USER.email = userObj.email;
-              console.log(USER);
-              header.render(USER.name);
-            })
-            .catch((err) => console.log(`Код ошибки: ${err}`));
-          console.log(jwt);
+          renderPage();
         })
         .catch((err) => {
           if (err === 401) {
@@ -76,13 +75,15 @@ import {
     });
   }
 
-  header.render(USER.name);
+  // первичная отрисовка страницы
+  renderPage();
 
   // общие слушатели событий
   form.setEventListeners();
   cardList.setEventListeners();
   // newsCard.setEventListeners();
 
+  // слушатель события для кнопки интерфейса "Войти в систему"
   NAVBAR_BTN_AUTH.addEventListener('click', () => {
     popupEnter.open();
     setSubmitListenerToPopupEnter();

@@ -10,20 +10,9 @@ export default class PopupEnter extends Popup {
     this.pickUpData = this.pickUpData.bind(this);
   }
 
-  setSuccessSignIn(name) {
-    this.close();
-    this.headerClass.render({ isLoggedin: true, userName: name });
-    // this.newsCardClass.switchIcons();
-  }
-
   pickUpData(form) {
     const email = form.email.value;
     const password = form.password.value;
     return { email, password };
-  }
-
-  submit(e) {
-    e.preventDefault();
-    this.mainApi.signin();
   }
 }

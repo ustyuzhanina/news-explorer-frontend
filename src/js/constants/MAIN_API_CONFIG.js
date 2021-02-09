@@ -1,4 +1,3 @@
-// export const API_URL = NODE_ENV === 'production' ? 'https://nomoreparties.co' : 'http://nomoreparties.co';
 const API_URL = NODE_ENV === 'production' ? 'https://api.news4u.xyz' : 'http://localhost:3000';
 const ORIGIN_URL = NODE_ENV === 'production' ? 'https://news4u.xyz' : 'http://localhost:8080';
 
