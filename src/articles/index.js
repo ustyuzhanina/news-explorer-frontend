@@ -49,6 +49,7 @@ import {
           console.log(savedArticles);
           // отрисовываем интро для ЛК по массиву сохраненных статей
           profilePage.renderMarkup(savedArticles);
+          // отрисовываем контейнер с карточками по массиву сохраненных статей
           cardList.renderAllCards(savedArticles);
         });
     })
@@ -62,6 +63,5 @@ import {
 
 
   // общие слушатели событий
-  // cardList.setEventListeners();
   // newsCard.setEventListeners();
 })();

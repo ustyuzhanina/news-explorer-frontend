@@ -93,9 +93,23 @@ export default class NewsCardList {
 
   renderAllCards(articles) {
     articles.forEach((article) => {
-      const newCard = this.cardClass.create(article);
+      const cardData = {
+        title: article.title,
+        publishedAt: article.date,
+        description: article.text,
+        urlToImage: article.image,
+        source: {
+          name: article.source,
+        },
+        url: article.link,
+        keyword: article.keyword,
+        id: article._id,
+        owner: article.owner,
+      };
+
+      const newCard = this.cardClass.create(cardData);
       this.addCard(newCard);
+      this.cardClass.switchIcons(true);
     });
-    this.cardClass.switchIcons(true);
   }
 }

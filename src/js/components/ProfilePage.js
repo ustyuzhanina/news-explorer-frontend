@@ -17,7 +17,15 @@ export default class ProfilePage {
     let headerEnding = '';
     let keywordsTemplate = '';
     const totalArticlesNStr = totalArticlesN.toString();
-    const totalArticlesNEnd = totalArticlesNStr[totalArticlesNStr.length - 1];
+    const totalArticlesNEnd = () => {
+      let number = null;
+      if (totalArticlesN > 9) {
+        number = totalArticlesNStr[totalArticlesNStr.length - 1];
+      } else {
+        number = totalArticlesN;
+      }
+      return number;
+    };
 
     if (totalArticlesN === 0) {
       headerEnding = 'еще нет сохранённых статей';
@@ -104,7 +112,7 @@ export default class ProfilePage {
                 По ключевым словам:
                 <span class="intro__keywords">${sortedKeywords[0]}, ${sortedKeywords[1]}</span>
                 и
-                <span class="intro__rest-qty">${sortedKeywords.length() - 2} другим</span>
+                <span class="intro__rest-qty">${sortedKeywords.length - 2} другим</span>
                </p>
              </div>
              `;
