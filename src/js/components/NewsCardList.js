@@ -29,7 +29,6 @@ export default class NewsCardList {
 
   addCard(newCard) {
     CARD_CONTAINER.appendChild(newCard);
-    this.cardRenderCounter++;
   }
 
   renderResults(articles) {
@@ -51,6 +50,7 @@ export default class NewsCardList {
       articles.slice([0], [3]).forEach((article) => {
         const newCard = this.cardCreator.create(article, this.newsApi.keyword);
         this.addCard(newCard);
+        this.cardRenderCounter++;
       });
       this.waitingArticles = articles.slice([3], [articles.length + 1]);
     }
@@ -90,7 +90,10 @@ export default class NewsCardList {
     this.keyword = null;
   }
 
-  setEventListeners() {
-    BTN_SHOW_MORE.addEventListener('click', () => this.showMore());
+  renderAllCards(articles) {
+    articles.forEach((article) => {
+      const newCard = this.cardCreator.create(article);
+      this.addCard(newCard);
+    });
   }
 }

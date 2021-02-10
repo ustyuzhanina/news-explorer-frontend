@@ -63,11 +63,11 @@
 
           <div class="footer__link-container">
             <a class="footer__link" href="../">Главная</a>
-            <a class="footer__link" href="https://praktikum.yandex.ru" target="_blank">Яндекс.Практикум</a>
+            <a class="footer__link" href="https://praktikum.yandex.ru" target="_blank" rel="noopener noreferrer">Яндекс.Практикум</a>
           </div>
           <div class="footer__social-networks">
-            <a class="footer__icon footer__icon_git" href="https://github.com/ustyuzhanina" target="_blank"></a>
-            <a class="footer__icon footer__icon_facebook" href="https://www.facebook.com" target="_blank"></a>
+            <a class="footer__icon footer__icon_git" href="https://github.com/ustyuzhanina" target="_blank" rel="noopener noreferrer"></a>
+            <a class="footer__icon footer__icon_facebook" href="https://www.facebook.com" target="_blank" rel="noopener noreferrer"></a>
           </div>
         </div>
 
@@ -76,6 +76,6 @@
     </footer>
 
   </div>
-  <script src="<%= htmlWebpackPlugin.files.chunks.articles.entry %>"></script>
+  <script defer src="<%= htmlWebpackPlugin.files.chunks.articles.entry %>"></script>
 </body>
 </html>

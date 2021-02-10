@@ -1,10 +1,11 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable class-methods-use-this */
 import { sortByFrequency } from '../utils/sortByFrequency';
 import { INTRO } from '../constants/MARKUP_SELECTORS';
 
 export default class ProfilePage {
   constructor() {
-    this.user = null;
+    this._user = null;
     this.renderMarkup = this.renderMarkup.bind(this);
   }
 
@@ -112,8 +113,15 @@ export default class ProfilePage {
     return keywordsTemplate;
   }
 
-  renderMarkup(articles, userName) {
-    this.user = userName;
+  renderMarkup(articles) {
     INTRO.insertAdjacentHTML('afterbegin', this._createMarkup(articles));
+  }
+
+  set user(userName) {
+    this._user = userName;
+  }
+
+  get user() {
+    return this._user;
   }
 }

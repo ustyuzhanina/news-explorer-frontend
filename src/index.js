@@ -15,13 +15,14 @@ import PopupRegister from './js/components/PopupRegister';
 import PopupSuccess from './js/components/PopupSuccess';
 import { NEWS_API_CONFIG } from './js/constants/NEWS_API_CONFIG';
 import { MAIN_API_CONFIG } from './js/constants/MAIN_API_CONFIG';
-import { USER } from './js/constants/USER';
+// import { USER } from './js/constants/USER';
 import ProfilePage from './js/components/ProfilePage';
 import {
   POPUP_ENTER,
   POPUP_REGISTER,
   POPUP_SUCCESS,
   NAVBAR_BTN_AUTH,
+  BTN_SHOW_MORE,
 } from './js/constants/MARKUP_SELECTORS';
 import {
   NOT_FOUND_ERROR,
@@ -42,6 +43,7 @@ import {
   const popupRegister = new PopupRegister(form, POPUP_REGISTER);
   const popupSuccess = new PopupSuccess(POPUP_SUCCESS);
   const popupEnter = new PopupEnter(form, POPUP_ENTER);
+  const profilePage = new ProfilePage();
 
   function switchPopups(from, to) {
     from.close();
@@ -51,11 +53,10 @@ import {
   function renderPage() {
     mainApi.getUserData()
       .then((userObj) => {
-        USER.name = userObj.name;
-        USER.email = userObj.email;
+        profilePage.user = userObj.name;
       })
       .catch((err) => console.log(`Код ошибки: ${err}`))
-      .finally(() => header.render(USER.name));
+      .finally(() => header.render(profilePage.user));
   }
 
   function setSubmitListenerToPopupEnter() {
@@ -80,7 +81,7 @@ import {
 
   // общие слушатели событий
   form.setEventListeners();
-  cardList.setEventListeners();
+  // cardList.setEventListeners();
   // newsCard.setEventListeners();
 
   // слушатель события для кнопки интерфейса "Войти в систему"
@@ -118,4 +119,6 @@ import {
     switchPopups(popupSuccess, popupEnter);
     setSubmitListenerToPopupEnter();
   });
+
+  BTN_SHOW_MORE.addEventListener('click', () => cardList.showMore());
 })();

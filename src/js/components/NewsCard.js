@@ -12,13 +12,16 @@ export default class NewsCard {
     this.clickHandler = this.clickHandler.bind(this);
   }
 
-  create(article, keyword) {
+  create(article, searchKeyword = null) {
     const title = article.title;
     const date = article.publishedAt;
     const description = article.description;
     const image = article.urlToImage;
     const source = article.source.name;
     const sourceUrl = article.url;
+    const keyword = article.keyword || searchKeyword;
+    const id = article._id || '';
+    const owner = article.owner || '';
 
     const cardDate = (new Intl.DateTimeFormat('ru', {
       day: 'numeric',
@@ -27,7 +30,7 @@ export default class NewsCard {
     }).format(new Date(date))).replace(' г.', '').replace(' 20', ', 20');
 
     const template = `
-    <article class="card" data-id="" data-owner="">
+    <article class="card" data-id="${id}" data-owner="${owner}">
     <div class="card__cover">
       <img src="${image}" alt="Без фотографии" class="card__image">
       <div class="card__controls">
@@ -49,7 +52,7 @@ export default class NewsCard {
       <h2 class="card__title">${title}</h2>
       <p class="card__info">${description}</p>
     </div>
-    <a class="card__source" href="${sourceUrl}" target="_blank">${source}</a>
+    <a class="card__source" href="${sourceUrl}" target="_blank" rel="noopener noreferrer">${source}</a>
   </article>
     `.trim();
 

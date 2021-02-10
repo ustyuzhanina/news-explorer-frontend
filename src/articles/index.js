@@ -9,7 +9,7 @@ import NewsCard from '../js/components/NewsCard';
 import NewsCardList from '../js/components/NewsCardList';
 import { NEWS_API_CONFIG } from '../js/constants/NEWS_API_CONFIG';
 import { MAIN_API_CONFIG } from '../js/constants/MAIN_API_CONFIG';
-import { USER } from '../js/constants/USER';
+// import { USER } from '../js/constants/USER';
 import ProfilePage from '../js/components/ProfilePage';
 import {
   NAVBAR_BTN_AUTH,
@@ -35,11 +35,10 @@ import {
 
   mainApi.getUserData()
     .then((userObj) => {
-      USER.name = userObj.name;
-      USER.email = userObj.email;
+      profilePage.user = userObj.name;
     })
     .then(() => {
-      header.render(USER.name);
+      header.render(profilePage.user);
       // получаем все сохраненные статьи пользователя из mainApi
       mainApi.getArticles()
         .then((res) => {
@@ -48,8 +47,9 @@ import {
         .catch((err) => console.log(`Ошибка ${err}: у Вас еще нет сохраненных статей`))
         .finally(() => {
           console.log(savedArticles);
-          // отрисовываем интро для ЛК по кол-ву сохраненных статей
-          profilePage.renderMarkup(savedArticles, USER.name);
+          // отрисовываем интро для ЛК по массиву сохраненных статей
+          profilePage.renderMarkup(savedArticles);
+          cardList.renderAllCards(savedArticles);
         });
     })
     .catch((err) => {
@@ -62,6 +62,6 @@ import {
 
 
   // общие слушатели событий
-  cardList.setEventListeners();
+  // cardList.setEventListeners();
   // newsCard.setEventListeners();
 })();
