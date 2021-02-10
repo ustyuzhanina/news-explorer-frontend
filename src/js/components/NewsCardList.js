@@ -13,7 +13,7 @@ import {
 
 export default class NewsCardList {
   constructor(newsCard, mainApi, newsApi) {
-    this.cardCreator = newsCard;
+    this.cardClass = newsCard;
     this.mainApi = mainApi;
     this.newsApi = newsApi;
     this.renderResults = this.renderResults.bind(this);
@@ -29,6 +29,7 @@ export default class NewsCardList {
 
   addCard(newCard) {
     CARD_CONTAINER.appendChild(newCard);
+    this.cardClass.setEventListeners(newCard);
   }
 
   renderResults(articles) {
@@ -48,7 +49,7 @@ export default class NewsCardList {
       }
 
       articles.slice([0], [3]).forEach((article) => {
-        const newCard = this.cardCreator.create(article, this.newsApi.keyword);
+        const newCard = this.cardClass.create(article, this.newsApi.keyword);
         this.addCard(newCard);
         this.cardRenderCounter++;
       });
@@ -92,8 +93,9 @@ export default class NewsCardList {
 
   renderAllCards(articles) {
     articles.forEach((article) => {
-      const newCard = this.cardCreator.create(article);
+      const newCard = this.cardClass.create(article);
       this.addCard(newCard);
     });
+    this.cardClass.switchIcons(true);
   }
 }

@@ -67,6 +67,7 @@ import {
         .then((jwt) => {
           popupEnter.close();
           renderPage();
+          newsCard.switchIcons(true);
         })
         .catch((err) => {
           if (err === 401) {

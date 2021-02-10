@@ -32,7 +32,7 @@ export default class Header {
             USER.name = null;
             USER.email = null;
             this.render(USER.name);
-            // отключить кнопки на карточках
+            this.cardClass.switchIcons(false);
           })
           .catch((err) => console.log(err));
       });
