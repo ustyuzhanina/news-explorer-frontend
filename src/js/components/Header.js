@@ -38,10 +38,6 @@ export default class Header {
       });
     }
 
-    NAVBAR_SHOW_MENU_BTN.addEventListener('click', () => {
-      NAVBAR.classList.toggle('navbar_opened');
-    });
-
     NAVBAR_USERNAME.textContent = userName;
   }
 }

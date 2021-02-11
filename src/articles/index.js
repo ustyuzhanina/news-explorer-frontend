@@ -9,27 +9,19 @@ import NewsCard from '../js/components/NewsCard';
 import NewsCardList from '../js/components/NewsCardList';
 import { NEWS_API_CONFIG } from '../js/constants/NEWS_API_CONFIG';
 import { MAIN_API_CONFIG } from '../js/constants/MAIN_API_CONFIG';
-// import { USER } from '../js/constants/USER';
 import ProfilePage from '../js/components/ProfilePage';
 import {
-  NAVBAR_BTN_AUTH,
+  NAVBAR_SHOW_MENU_BTN,
+  NAVBAR,
 } from '../js/constants/MARKUP_SELECTORS';
-import {
-  NOT_FOUND_ERROR,
-  BAD_REQUEST_ERROR,
-  AUTH_ERROR,
-  FORBIDDEN,
-  MAIN_API_ERROR,
-  MONGO_ERROR,
-} from '../js/constants/ERRORS';
 
 (function () {
   const newsApi = new NewsApi(NEWS_API_CONFIG);
   const mainApi = new MainApi(MAIN_API_CONFIG);
-  const newsCard = new NewsCard(mainApi);
+  const profilePage = new ProfilePage();
+  const newsCard = new NewsCard(mainApi, profilePage);
   const header = new Header({ headerColor: 'white' }, newsCard, mainApi);
   const cardList = new NewsCardList(newsCard, mainApi, newsApi);
-  const profilePage = new ProfilePage();
 
   const savedArticles = [];
 
@@ -64,4 +56,8 @@ import {
 
   // общие слушатели событий
   // newsCard.setEventListeners();
+
+  NAVBAR_SHOW_MENU_BTN.addEventListener('click', () => {
+    NAVBAR.classList.toggle('navbar_opened');
+  });
 })();

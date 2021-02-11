@@ -13,7 +13,7 @@
 }
 
 .navbar__btn_auth:hover {
-  box-shadow: 0 1px 1px 1px rgb(192, 182, 182);
+  box-shadow: 0 0 6px 1px rgb(192, 182, 182);
 }
 
 .page_logged-in .navbar__btn_auth {

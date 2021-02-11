@@ -23,6 +23,8 @@ import {
   POPUP_SUCCESS,
   NAVBAR_BTN_AUTH,
   BTN_SHOW_MORE,
+  NAVBAR_SHOW_MENU_BTN,
+  NAVBAR,
 } from './js/constants/MARKUP_SELECTORS';
 import {
   NOT_FOUND_ERROR,
@@ -36,14 +38,15 @@ import {
 (function () {
   const newsApi = new NewsApi(NEWS_API_CONFIG);
   const mainApi = new MainApi(MAIN_API_CONFIG);
-  const newsCard = new NewsCard(mainApi);
+  const profilePage = new ProfilePage();
+  const newsCard = new NewsCard(mainApi, profilePage);
   const header = new Header({ headerColor: 'transparent' }, newsCard, mainApi);
   const cardList = new NewsCardList(newsCard, mainApi, newsApi);
   const form = new Form(newsApi, cardList);
   const popupRegister = new PopupRegister(form, POPUP_REGISTER);
   const popupSuccess = new PopupSuccess(POPUP_SUCCESS);
   const popupEnter = new PopupEnter(form, POPUP_ENTER);
-  const profilePage = new ProfilePage();
+
 
   function switchPopups(from, to) {
     from.close();
@@ -80,10 +83,7 @@ import {
   // первичная отрисовка страницы
   renderPage();
 
-  // общие слушатели событий
   form.setEventListeners();
-  // cardList.setEventListeners();
-  // newsCard.setEventListeners();
 
   // слушатель события для кнопки интерфейса "Войти в систему"
   NAVBAR_BTN_AUTH.addEventListener('click', () => {
@@ -122,4 +122,8 @@ import {
   });
 
   BTN_SHOW_MORE.addEventListener('click', () => cardList.showMore());
+
+  NAVBAR_SHOW_MENU_BTN.addEventListener('click', () => {
+    NAVBAR.classList.toggle('navbar_opened');
+  });
 })();

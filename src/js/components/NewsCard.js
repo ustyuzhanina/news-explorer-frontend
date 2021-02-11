@@ -6,8 +6,9 @@ import {
 } from '../constants/MARKUP_SELECTORS';
 
 export default class NewsCard {
-  constructor(mainApi) {
+  constructor(mainApi, profilePage) {
     this.mainApi = mainApi;
+    this.profilePage = profilePage;
     this.switchIcons = this.switchIcons.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleBookmarkClick = this.handleBookmarkClick.bind(this);
@@ -65,16 +66,32 @@ export default class NewsCard {
   }
 
   switchIcons(isLoggedIn) {
+    const allIcons = document.querySelectorAll('.card__icon');
+
     if (!isLoggedIn) {
-      document.querySelectorAll('.card__icon').setAttribute('disabled', true);
+      allIcons.forEach((icon) => icon.setAttribute('disabled', true));
     } else {
-      document.querySelectorAll('.card__icon').removeAttribute('disabled');
+      allIcons.forEach((icon) => icon.removeAttribute('disabled'));
     }
   }
 
   handleDelete(e) {
+    const savedArticles = [];
+
     const card = e.target.closest('.card');
     this.mainApi.removeArticle(card.dataset.id)
+      .then(() => {
+        this.mainApi.getArticles()
+          .then((res) => {
+            savedArticles.push.apply(savedArticles, res);
+            this.profilePage.renderMarkup(savedArticles);
+          })
+          .catch((err) => console.log(err))
+          .finally(() => {
+            console.log(savedArticles);
+            this.profilePage.renderMarkup(savedArticles);
+          });
+      })
       .then(() => CARD_CONTAINER.removeChild(card))
       .catch((err) => console.log(err));
   }
@@ -110,7 +127,6 @@ export default class NewsCard {
 
       this.mainApi.createArticle(cardData)
         .then((article) => {
-          console.log(article);
           fillInCard(article);
         })
         .catch((err) => console.log(err));

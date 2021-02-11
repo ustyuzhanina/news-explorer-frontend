@@ -103,13 +103,14 @@ export default class NewsCardList {
         },
         url: article.link,
         keyword: article.keyword,
-        id: article._id,
+        _id: article._id,
         owner: article.owner,
       };
 
       const newCard = this.cardClass.create(cardData);
       this.addCard(newCard);
-      this.cardClass.switchIcons(true);
     });
+
+    this.cardClass.switchIcons(true);
   }
 }

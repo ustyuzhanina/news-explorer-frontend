@@ -122,11 +122,12 @@ export default class ProfilePage {
   }
 
   renderMarkup(articles) {
+    INTRO.textContent = '';
     INTRO.insertAdjacentHTML('afterbegin', this._createMarkup(articles));
   }
 
   set user(userName) {
-    this._user = userName;
+    this._user = userName || 'Уважаемый пользователь';
   }
 
   get user() {
