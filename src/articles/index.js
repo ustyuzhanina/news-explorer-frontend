@@ -26,7 +26,12 @@ import {
   const savedArticles = [];
 
   mainApi.getUserData()
-    .then(() => {
+    .finally(() => {
+      if (!mainApi.isLoggedIn) {
+        window.location.href = '../';
+        return;
+      }
+
       header.render(mainApi.isLoggedIn, localStorage.getItem('user'));
       profilePage.user = localStorage.getItem('user');
       // получаем все сохраненные статьи пользователя из mainApi
@@ -43,14 +48,7 @@ import {
           cardList.renderAllCards(savedArticles);
         });
     })
-    .catch((err) => {
-      window.location.href = '../';
-    });
-
-
-
-
-
+    .catch((err) => console.log(err));
 
   // общие слушатели событий
   // newsCard.setEventListeners();

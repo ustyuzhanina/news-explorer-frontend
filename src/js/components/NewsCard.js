@@ -1,8 +1,6 @@
 /* eslint-disable class-methods-use-this */
 import {
   CARD_CONTAINER,
-  PAGE,
-  SEARCH_BAR,
 } from '../constants/MARKUP_SELECTORS';
 
 export default class NewsCard {
@@ -24,7 +22,6 @@ export default class NewsCard {
     const sourceUrl = article.url;
     const keyword = article.keyword || searchKeyword;
     const id = article._id || '';
-    const owner = article.owner || '';
 
     const cardDate = (new Intl.DateTimeFormat('ru', {
       day: 'numeric',
@@ -33,7 +30,7 @@ export default class NewsCard {
     }).format(new Date(date))).replace(' г.', '').replace(' 20', ', 20');
 
     const template = `
-    <article class="card" data-id="${id}" data-owner="${owner}">
+    <article class="card" data-id="${id}">
     <div class="card__cover">
       <img src="${image}" alt="Иллюстрация новости" class="card__image" onerror="this.src = 'https://images.unsplash.com/photo-1612538498456-e861df91d4d0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=40&q=20'; this.onerror = null;">
       <div class="card__controls">
@@ -112,7 +109,6 @@ export default class NewsCard {
     if (bookmarkIcon.classList.contains('card__icon_bookmark_marked')) {
       const clearData = () => {
         card.dataset.id = '';
-        card.dataset.owner = '';
         bookmarkIcon.classList.remove('card__icon_bookmark_marked');
       };
 
@@ -122,12 +118,12 @@ export default class NewsCard {
     } else {
       const fillInCard = (article) => {
         card.dataset.id = article._id;
-        card.dataset.owner = article.owner;
         bookmarkIcon.classList.add('card__icon_bookmark_marked');
       };
 
       this.mainApi.createArticle(cardData)
         .then((article) => {
+          console.log(article);
           fillInCard(article);
         })
         .catch((err) => console.log(err));

@@ -40,11 +40,10 @@ export default class Header {
     NAVBAR_BTN_LOGOUT.addEventListener('click', () => {
       this.apiClass.signout()
         .then((res) => {
-          console.log(res.message);
+          console.log(res);
           window.location.href = '../';
           this.userName = null;
           this.render(false, this.userName);
-          this.newsApiClass.isLoggedIn = false;
 
           cards.forEach((card) => {
             this.cardClass.switchIcons(card, false);
