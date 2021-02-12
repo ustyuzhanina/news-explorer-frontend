@@ -103,7 +103,10 @@
             Меня зовут Елена Устюжанина. На данный момент я начинающий специалист в веб-разработке и приближаюсь к завершению обучения в Яндекс.Практикуме https://praktikum.yandex.ru/.
           </p>
           <p class="author__description">
-            За прошедшие месяцы обучения успела изучить верстку с использованием HTML5, CSS3. Реализовала проекты с нативным Javascript ES6, RegExp. Подключила сайт к API. И освоила основы работы с командной строкой в терминале, настройкой Webpack и работой с GitHub и GitHub Pages.
+            За прошедшие месяцы обучения успела изучить верстку с использованием HTML5, CSS3. Освоила основы работы с командной строкой в терминале, настройкой Webpack и работой с GitHub и GitHub Pages.
+          </p>
+          <p class="author__description">
+            Реализовала проекты с нативным Javascript ES6, RegExp. Написала собственный API с использованием технологий Node.js, Express и MongoDB по техническому заданию к данной дипломной работе и подключила сайт к нему, а также к стороннему API поиска новостей.
           </p>
           <p class="author__description">
             С удовольствием учусь новому и умею организовывать себя и свое рабочее время.
@@ -140,7 +143,7 @@
       <form class="popup__form popup__form_enter" name="enter" novalidate>
         <fieldset class="popup__fieldset">
           <span class="popup__input-subtitle">Email</span>
-          <input type="text" name="email" class="popup__input popup__input_email" placeholder="Введите почту" required pattern="([a-zA-Z\d]+(-[\w\d]+)?)+@([\w\d]+(-[\w\d]+)?\.)+\w{2,3}">
+          <input type="text" name="email" class="popup__input popup__input_email" placeholder="Введите почту" required pattern="([a-zA-Z\d]+(-[\w\d]+)?(\.[\w\d]+)?)+@([\w\d]+(-[\w\d]+)?\.)+\w{2,3}$">
           <span class="error" id="error-email">Неправильный формат email</span>
         </fieldset>
         <fieldset class="popup__fieldset">

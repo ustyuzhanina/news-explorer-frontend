@@ -13,19 +13,11 @@ export default class ProfilePage {
     const keywords = articles.map((article) => article.keyword.toUpperCase());
     const sortedKeywords = sortByFrequency(keywords);
     const totalArticlesN = articles.length;
+    const totalArticlesNStr = totalArticlesN.toString();
+    const endingNumber = Number(totalArticlesNStr[totalArticlesNStr.length - 1]);
 
     let headerEnding = '';
     let keywordsTemplate = '';
-    const totalArticlesNStr = totalArticlesN.toString();
-    const totalArticlesNEnd = () => {
-      let number = null;
-      if (totalArticlesN > 9) {
-        number = totalArticlesNStr[totalArticlesNStr.length - 1];
-      } else {
-        number = totalArticlesN;
-      }
-      return number;
-    };
 
     if (totalArticlesN === 0) {
       headerEnding = 'еще нет сохранённых статей';
@@ -38,21 +30,29 @@ export default class ProfilePage {
       </div>
       `;
     } else {
-      switch (totalArticlesNEnd) {
-        case 1:
-          headerEnding = `${totalArticlesN} сохранённая статья`;
-          break;
+      if ((totalArticlesN > 10) && (totalArticlesN < 20)) {
+        headerEnding = `${totalArticlesN} сохранённых статей`;
+      } else {
+        switch (endingNumber) {
+          case 1:
+            headerEnding = `${totalArticlesN} сохранённая статья`;
+            break;
 
-        case 2 || 3 || 4:
-          headerEnding = `${totalArticlesN} сохранённых статьи`;
-          break;
+          case 2:
+            headerEnding = `${totalArticlesN} сохранённых статьи`;
+            break;
 
-        case 0 || 5 || 6 || 7 || 8 || 9:
-          headerEnding = `${totalArticlesN} сохранённых статей`;
-          break;
+          case 3:
+            headerEnding = `${totalArticlesN} сохранённых статьи`;
+            break;
 
-        default:
-          headerEnding = 'непонятное количество сохранённых статей';
+          case 4:
+            headerEnding = `${totalArticlesN} сохранённых статьи`;
+            break;
+
+          default:
+            headerEnding = `${totalArticlesN} сохранённых статей`;
+        }
       }
 
       switch (sortedKeywords.length) {
@@ -118,6 +118,7 @@ export default class ProfilePage {
              `;
       }
     }
+
     return keywordsTemplate;
   }
 

@@ -85,7 +85,6 @@ export default class NewsCard {
           })
           .catch((err) => console.log(err))
           .finally(() => {
-            console.log(savedArticles);
             this.profilePage.renderMarkup(savedArticles);
           });
       })

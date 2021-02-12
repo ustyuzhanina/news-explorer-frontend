@@ -19,14 +19,11 @@ export default class PopupSuccess extends Popup {
 
   close() {
     this.popup.classList.remove('popup_is-opened');
-    this.closeBtn.removeEventListener('click', this.close);
-    document.removeEventListener('keydown', (e) => this._handleKeyDown(e));
-    document.removeEventListener('click', (e) => this._handleMouseDown(e));
   }
 
   setEventListeners() {
-    this.closeBtn.addEventListener('click', this.close);
-    document.addEventListener('keydown', (e) => this._handleKeyDown(e));
-    document.addEventListener('click', (e) => this._handleMouseDown(e));
+    this.closeBtn.addEventListener('click', this.close, { once: true });
+    document.addEventListener('keydown', (e) => this._handleKeyDown(e), { once: true });
+    document.addEventListener('click', (e) => this._handleMouseDown(e), { once: true });
   }
 }

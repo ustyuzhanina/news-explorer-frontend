@@ -25,13 +25,9 @@ import {
   BTN_SHOW_MORE,
   NAVBAR_SHOW_MENU_BTN,
   NAVBAR,
-  CARD_CONTAINER,
 } from './js/constants/MARKUP_SELECTORS';
 import {
-  NOT_FOUND_ERROR,
-  BAD_REQUEST_ERROR,
   AUTH_ERROR,
-  FORBIDDEN,
   MAIN_API_ERROR,
   MONGO_ERROR,
 } from './js/constants/ERRORS';
@@ -56,9 +52,11 @@ import {
   function setSubmitListenerToPopupEnter() {
     popupEnter.form.addEventListener('submit', (e) => {
       e.preventDefault();
+      e.target.setAttribute('disabled', true);
       const userData = popupEnter.pickUpData(e.target);
       mainApi.signin(userData)
-        .then((jwt) => {
+        .then(() => {
+          e.target.removeAttribute('disabled');
           popupEnter.close();
           header.render(mainApi.isLoggedIn, localStorage.getItem('user'));
         })
@@ -75,8 +73,6 @@ import {
     .finally(() => {
       header.render(mainApi.isLoggedIn, localStorage.getItem('user'));
     });
-
-  // newsCard.switchIcons(, isLoggedIn);
 
   form.setEventListeners();
 
@@ -98,9 +94,11 @@ import {
 
     popupRegister.form.addEventListener('submit', (e) => {
       e.preventDefault();
+      e.target.setAttribute('disabled', true);
       const userData = popupRegister.pickUpData(e.target);
       mainApi.signup(userData)
         .then(() => {
+          e.target.removeAttribute('disabled');
           switchPopups(popupRegister, popupSuccess);
         })
         .catch((err) => {

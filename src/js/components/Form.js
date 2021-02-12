@@ -21,6 +21,9 @@ export default class Form {
 
   _validateInputElement(input) {
     if (!input.checkValidity()) {
+
+
+
       activateInputError(input);
       return false;
     }

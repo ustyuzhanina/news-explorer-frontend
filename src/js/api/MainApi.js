@@ -1,14 +1,5 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-underscore-dangle */
-import {
-  NOT_FOUND_ERROR,
-  BAD_REQUEST_ERROR,
-  AUTH_ERROR,
-  FORBIDDEN,
-  MAIN_API_ERROR,
-  MONGO_ERROR,
- } from '../constants/ERRORS';
-
 export default class MainApi {
   constructor(config) {
     this.baseUrl = config.url;
@@ -16,6 +7,7 @@ export default class MainApi {
     this._getResponseData = this._getResponseData.bind(this);
     this.signup = this.signup.bind(this);
     this.signin = this.signin.bind(this);
+    this.signout = this.signout.bind(this);
     this.getUserData = this.getUserData.bind(this);
     this.getArticles = this.getArticles.bind(this);
     this.createArticle = this.createArticle.bind(this);

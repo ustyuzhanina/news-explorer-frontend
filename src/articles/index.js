@@ -41,7 +41,6 @@ import {
         })
         .catch((err) => console.log(`Ошибка ${err}: у Вас еще нет сохраненных статей`))
         .finally(() => {
-          console.log(savedArticles);
           // отрисовываем интро для ЛК по массиву сохраненных статей
           profilePage.renderMarkup(savedArticles);
           // отрисовываем контейнер с карточками по массиву сохраненных статей
