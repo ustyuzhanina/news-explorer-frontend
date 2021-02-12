@@ -11,6 +11,10 @@ import {
   CARD_CONTAINER,
 } from '../constants/MARKUP_SELECTORS';
 
+import {
+  NEWS_API_ERROR
+} from '../constants/ERRORS';
+
 export default class NewsCardList {
   constructor(newsCard, mainApi, newsApi) {
     this.cardClass = newsCard;
@@ -54,6 +58,8 @@ export default class NewsCardList {
         this.cardRenderCounter++;
       });
       this.waitingArticles = articles.slice([3], [articles.length + 1]);
+      const cards = CARD_CONTAINER.querySelectorAll('.card');
+      cards.forEach((card) => this.cardClass.switchIcons(card, this.mainApi.isLoggedIn));
     }
   }
 
@@ -70,12 +76,13 @@ export default class NewsCardList {
   renderError(err) {
     SEARCH_RESULTS.classList.remove('search-results_visible');
     NOT_FOUND.classList.remove('not-found_visible');
-    SEARCH_ERROR.querySelector('.search-error__description').textContent = err;
+    SEARCH_ERROR.querySelector('.search-error__description').textContent = NEWS_API_ERROR;
+    console.log(err);
     SEARCH_ERROR.classList.add('search-error_visible');
   }
 
   showMore() {
-    this.renderResults(this.waitingArticles, this.keyword);
+    this.renderResults(this.waitingArticles);
     if (this.cardRenderCounter > (this.newsApi.cache.length - 1)) {
       BTN_SHOW_MORE.classList.remove('button_show-more_visible');
     }
@@ -110,7 +117,7 @@ export default class NewsCardList {
       const newCard = this.cardClass.create(cardData);
       this.addCard(newCard);
     });
-
-    this.cardClass.switchIcons(true);
+    const cards = CARD_CONTAINER.querySelectorAll('.card');
+    cards.forEach((card) => this.cardClass.switchIcons(card, this.mainApi.isLoggedIn));
   }
 }

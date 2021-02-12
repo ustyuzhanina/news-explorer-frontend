@@ -127,10 +127,10 @@ export default class ProfilePage {
   }
 
   set user(userName) {
-    this._user = userName || 'Уважаемый пользователь';
+    this._user = userName;
   }
 
   get user() {
-    return this._user;
+    return this._user || 'Уважаемый пользователь';
   }
 }

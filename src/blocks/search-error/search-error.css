@@ -6,6 +6,7 @@
   display: none;
   background: #f5f6f7;
   margin: auto;
+  width: 100%;
 }
 
 .search-error_visible {

@@ -25,6 +25,7 @@ import {
   BTN_SHOW_MORE,
   NAVBAR_SHOW_MENU_BTN,
   NAVBAR,
+  CARD_CONTAINER,
 } from './js/constants/MARKUP_SELECTORS';
 import {
   NOT_FOUND_ERROR,
@@ -40,26 +41,16 @@ import {
   const mainApi = new MainApi(MAIN_API_CONFIG);
   const profilePage = new ProfilePage();
   const newsCard = new NewsCard(mainApi, profilePage);
-  const header = new Header({ headerColor: 'transparent' }, newsCard, mainApi);
+  const header = new Header({ headerColor: 'transparent' }, newsCard, mainApi, newsApi);
   const cardList = new NewsCardList(newsCard, mainApi, newsApi);
   const form = new Form(newsApi, cardList);
   const popupRegister = new PopupRegister(form, POPUP_REGISTER);
   const popupSuccess = new PopupSuccess(POPUP_SUCCESS);
   const popupEnter = new PopupEnter(form, POPUP_ENTER);
 
-
   function switchPopups(from, to) {
     from.close();
     to.open();
-  }
-
-  function renderPage() {
-    mainApi.getUserData()
-      .then((userObj) => {
-        profilePage.user = userObj.name;
-      })
-      .catch((err) => console.log(`Код ошибки: ${err}`))
-      .finally(() => header.render(profilePage.user));
   }
 
   function setSubmitListenerToPopupEnter() {
@@ -69,8 +60,7 @@ import {
       mainApi.signin(userData)
         .then((jwt) => {
           popupEnter.close();
-          renderPage();
-          newsCard.switchIcons(true);
+          header.render(mainApi.isLoggedIn, localStorage.getItem('user'));
         })
         .catch((err) => {
           if (err === 401) {
@@ -81,14 +71,25 @@ import {
   }
 
   // первичная отрисовка страницы
-  renderPage();
+  mainApi.getUserData()
+    .finally(() => {
+      header.render(mainApi.isLoggedIn, localStorage.getItem('user'));
+    });
+
+  // newsCard.switchIcons(, isLoggedIn);
 
   form.setEventListeners();
 
-  // слушатель события для кнопки интерфейса "Войти в систему"
+  // слушатели событий для кнопок интерфейса
   NAVBAR_BTN_AUTH.addEventListener('click', () => {
     popupEnter.open();
     setSubmitListenerToPopupEnter();
+  });
+
+  BTN_SHOW_MORE.addEventListener('click', () => cardList.showMore());
+
+  NAVBAR_SHOW_MENU_BTN.addEventListener('click', () => {
+    NAVBAR.classList.toggle('navbar_opened');
   });
 
   // переключатели для попапов
@@ -99,9 +100,8 @@ import {
       e.preventDefault();
       const userData = popupRegister.pickUpData(e.target);
       mainApi.signup(userData)
-        .then((regData) => {
+        .then(() => {
           switchPopups(popupRegister, popupSuccess);
-          console.log(regData);
         })
         .catch((err) => {
           if (err === 409) {
@@ -119,11 +119,5 @@ import {
   popupSuccess.linkBtn.addEventListener('click', () => {
     switchPopups(popupSuccess, popupEnter);
     setSubmitListenerToPopupEnter();
-  });
-
-  BTN_SHOW_MORE.addEventListener('click', () => cardList.showMore());
-
-  NAVBAR_SHOW_MENU_BTN.addEventListener('click', () => {
-    NAVBAR.classList.toggle('navbar_opened');
   });
 })();

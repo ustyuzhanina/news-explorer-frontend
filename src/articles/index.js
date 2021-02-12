@@ -20,17 +20,15 @@ import {
   const mainApi = new MainApi(MAIN_API_CONFIG);
   const profilePage = new ProfilePage();
   const newsCard = new NewsCard(mainApi, profilePage);
-  const header = new Header({ headerColor: 'white' }, newsCard, mainApi);
+  const header = new Header({ headerColor: 'white' }, newsCard, mainApi, newsApi);
   const cardList = new NewsCardList(newsCard, mainApi, newsApi);
 
   const savedArticles = [];
 
   mainApi.getUserData()
-    .then((userObj) => {
-      profilePage.user = userObj.name;
-    })
     .then(() => {
-      header.render(profilePage.user);
+      header.render(mainApi.isLoggedIn, localStorage.getItem('user'));
+      profilePage.user = localStorage.getItem('user');
       // получаем все сохраненные статьи пользователя из mainApi
       mainApi.getArticles()
         .then((res) => {

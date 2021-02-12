@@ -20,7 +20,19 @@ export default class MainApi {
     this.getArticles = this.getArticles.bind(this);
     this.createArticle = this.createArticle.bind(this);
     this.removeArticle = this.removeArticle.bind(this);
-    /// и так далее
+    this._isLoggedIn = false;
+  }
+
+  set isLoggedIn(status) {
+    if (typeof status === 'boolean') {
+      this._isLoggedIn = status;
+    } else {
+      console.log('isLoggedIn может принимать только значения true или false');
+    }
+  }
+
+  get isLoggedIn() {
+    return this._isLoggedIn;
   }
 
   _getResponseData(res) {
@@ -30,10 +42,11 @@ export default class MainApi {
     return res.json();
   }
 
-  // methods for users' data
+  // methods for users' data and logging-in status
 
   signup({ email, password, name }) {
     const url = `${this.baseUrl}/signup`;
+    this.userName = name;
     const userData = {
       email,
       password,
@@ -46,7 +59,8 @@ export default class MainApi {
       credentials: 'include',
       body: JSON.stringify(userData),
     })
-      .then((res) => this._getResponseData(res));
+      .then((res) => this._getResponseData(res))
+      .then(() => localStorage.setItem('user', userData.name));
   }
 
   signin({ email, password }) {
@@ -62,7 +76,11 @@ export default class MainApi {
       credentials: 'include',
       body: JSON.stringify(userData),
     })
-      .then((res) => this._getResponseData(res));
+      .then((res) => this._getResponseData(res))
+      .then((res) => {
+        this.isLoggedIn = true;
+        return res;
+      });
   }
 
   getUserData() {
@@ -75,7 +93,18 @@ export default class MainApi {
       },
       credentials: 'include',
     })
-      .then((res) => this._getResponseData(res));
+      .then((res) => this._getResponseData(res))
+      .then((userData) => {
+        this.isLoggedIn = true;
+
+        if (!localStorage.getItem('user')) {
+          localStorage.setItem('user', userData.name);
+        }
+      })
+      .catch((err) => {
+        this.isLoggedIn = false;
+        console.log(`Код ошибки: ${err}`);
+      });
   }
 
   signout() {
@@ -85,7 +114,11 @@ export default class MainApi {
       method: 'GET',
       credentials: 'include',
     })
-      .then((res) => this._getResponseData(res));
+      .then((res) => this._getResponseData(res))
+      .then((res) => {
+        this.isLoggedIn = false;
+        return res;
+      });
   }
 
   // methods for articles

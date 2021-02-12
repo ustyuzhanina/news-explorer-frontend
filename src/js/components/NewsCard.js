@@ -35,7 +35,7 @@ export default class NewsCard {
     const template = `
     <article class="card" data-id="${id}" data-owner="${owner}">
     <div class="card__cover">
-      <img src="${image}" alt="Без фотографии" class="card__image">
+      <img src="${image}" alt="Иллюстрация новости" class="card__image" onerror="this.src = 'https://images.unsplash.com/photo-1612538498456-e861df91d4d0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=40&q=20'; this.onerror = null;">
       <div class="card__controls">
         <button class="card__icon card__icon_trash" disabled>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -65,13 +65,13 @@ export default class NewsCard {
     return newCard;
   }
 
-  switchIcons(isLoggedIn) {
-    const allIcons = document.querySelectorAll('.card__icon');
+  switchIcons(card, isLoggedIn) {
+    const icons = card.querySelectorAll('.card__icon');
 
     if (!isLoggedIn) {
-      allIcons.forEach((icon) => icon.setAttribute('disabled', true));
+      icons.forEach((icon) => icon.setAttribute('disabled', true));
     } else {
-      allIcons.forEach((icon) => icon.removeAttribute('disabled'));
+      icons.forEach((icon) => icon.removeAttribute('disabled'));
     }
   }
 
@@ -98,6 +98,7 @@ export default class NewsCard {
 
   handleBookmarkClick(e) {
     const card = e.target.closest('.card');
+    const bookmarkIcon = card.querySelector('.card__icon_bookmark');
     const cardData = {
       keyword: card.querySelector('.card__icon_keyword').textContent,
       title: card.querySelector('.card__title').textContent,
@@ -108,11 +109,11 @@ export default class NewsCard {
       image: card.querySelector('.card__image').src,
     };
 
-    if (e.target.classList.contains('card__icon_bookmark_marked')) {
+    if (bookmarkIcon.classList.contains('card__icon_bookmark_marked')) {
       const clearData = () => {
         card.dataset.id = '';
         card.dataset.owner = '';
-        e.target.classList.remove('card__icon_bookmark_marked');
+        bookmarkIcon.classList.remove('card__icon_bookmark_marked');
       };
 
       this.mainApi.removeArticle(card.dataset.id)
@@ -122,7 +123,7 @@ export default class NewsCard {
       const fillInCard = (article) => {
         card.dataset.id = article._id;
         card.dataset.owner = article.owner;
-        e.target.classList.add('card__icon_bookmark_marked');
+        bookmarkIcon.classList.add('card__icon_bookmark_marked');
       };
 
       this.mainApi.createArticle(cardData)
@@ -137,7 +138,7 @@ export default class NewsCard {
     const trashIcon = card.querySelector('.card__icon_trash');
     const bookmarkIcon = card.querySelector('.card__icon_bookmark');
 
-    trashIcon.addEventListener('click', (e) => this.handleDelete(e));
+    trashIcon.addEventListener('click', (e) => this.handleDelete(e), { once: true });
     bookmarkIcon.addEventListener('click', (e) => this.handleBookmarkClick(e));
   }
 }
