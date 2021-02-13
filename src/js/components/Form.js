@@ -7,6 +7,7 @@ import {
   SEARCH_BTN,
   SEARCH_FORM,
 } from '../constants/MARKUP_SELECTORS';
+import { BAD_REQUEST_ERROR } from '../constants/ERRORS';
 
 export default class Form {
   constructor(newsApi, cardList) {
@@ -16,11 +17,56 @@ export default class Form {
     this.newsApi = newsApi;
     this.cardList = cardList;
     this._validateInputElement = this._validateInputElement.bind(this);
+    this._isValidate = this._isValidate.bind(this);
     this.validateForm = this.validateForm.bind(this);
   }
 
+  _isValidate(inputElement) {
+    inputElement.setCustomValidity('');
+
+    if (inputElement.validity.valueMissing) {
+      inputElement.setCustomValidity(BAD_REQUEST_ERROR.empty);
+      return false;
+    }
+
+    if (inputElement.validity.tooShort) {
+      if (inputElement.name === 'password') {
+        inputElement.setCustomValidity(BAD_REQUEST_ERROR.tooShort.password);
+        return false;
+      }
+      if (inputElement.name === 'name') {
+        inputElement.setCustomValidity(BAD_REQUEST_ERROR.tooShort.name);
+        return false;
+      }
+    }
+
+    if (inputElement.validity.tooLong) {
+      if (inputElement.name === 'password') {
+        inputElement.setCustomValidity(BAD_REQUEST_ERROR.tooLong.password);
+        return false;
+      }
+      if (inputElement.name === 'name') {
+        inputElement.setCustomValidity(BAD_REQUEST_ERROR.tooLong.name);
+        return false;
+      }
+    }
+
+    if (inputElement.validity.patternMismatch) {
+      if (inputElement.name === 'email') {
+        inputElement.setCustomValidity(BAD_REQUEST_ERROR.pattern.email);
+        return false;
+      }
+      if (inputElement.name === 'name') {
+        inputElement.setCustomValidity(BAD_REQUEST_ERROR.pattern.name);
+        return false;
+      }
+    }
+
+    return inputElement.checkValidity();
+  }
+
   _validateInputElement(input) {
-    if (!input.checkValidity()) {
+    if (!this._isValidate(input)) {
       activateInputError(input);
       return false;
     }

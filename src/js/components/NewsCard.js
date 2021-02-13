@@ -122,7 +122,6 @@ export default class NewsCard {
 
       this.mainApi.createArticle(cardData)
         .then((article) => {
-          console.log(article);
           fillInCard(article);
         })
         .catch((err) => console.log(err));

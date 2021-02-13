@@ -15,7 +15,6 @@ import PopupRegister from './js/components/PopupRegister';
 import PopupSuccess from './js/components/PopupSuccess';
 import { NEWS_API_CONFIG } from './js/constants/NEWS_API_CONFIG';
 import { MAIN_API_CONFIG } from './js/constants/MAIN_API_CONFIG';
-// import { USER } from './js/constants/USER';
 import ProfilePage from './js/components/ProfilePage';
 import {
   POPUP_ENTER,

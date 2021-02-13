@@ -49,7 +49,6 @@ export default class NewsApi {
       .then((res) => this._getResponseData(res))
       .then((obj) => {
         this._cache = obj.articles;
-        console.log(this.cache);
         cardList.renderLoader(false);
         cardList.renderResults(this.cache);
       })
