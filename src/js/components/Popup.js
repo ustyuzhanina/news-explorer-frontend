@@ -32,8 +32,8 @@ export default class Popup {
     this.submitBtn = this.popup.querySelector('.popup__button');
     this.closeBtn = this.popup.querySelector('.popup__close');
 
-    this.setEventListeners();
     this.popup.classList.add('popup_is-opened');
+    this.setEventListeners();
     this.form.elements[1].focus();
     NAVBAR.classList.remove('navbar_opened');
   }
@@ -80,7 +80,9 @@ export default class Popup {
   }
 
   _handleMouseDown(e) {
-    if (e.target.classList.contains('popup_is-opened')) { this.close(); }
+    if (e.target.classList.contains('popup')) {
+      this.close();
+    }
   }
 
   // basic event listeners
@@ -88,7 +90,7 @@ export default class Popup {
   setEventListeners() {
     this.closeBtn.addEventListener('click', this.close, { once: true });
     document.addEventListener('keydown', (e) => this._handleKeyDown(e), { once: true });
-    document.addEventListener('click', (e) => this._handleMouseDown(e), { once: true });
+    this.popup.addEventListener('click', (e) => this._handleMouseDown(e));
     this.form.addEventListener('input', (e) => { this.formClass.validateForm(e); this.resetSubmitBtn(); });
   }
 }
