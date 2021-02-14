@@ -35,17 +35,15 @@ export default class NewsApi {
 
   getNews(keyword, cardList) {
     this._keyword = keyword;
-    const header = new Headers();
-    header.append('x-api-key', this.apiKey);
+    // const header = new Headers();
+    // header.append('x-api-key', this.apiKey);
 
     const url = `
-    ${removeQuotes(this.baseUrl)}?q=${this.keyword}&from=${this.from}&to=${this.to}&language=${this.language}&sortBy=${this.sortBy}&pageSize=${this.pageSize}
+    ${removeQuotes(this.baseUrl)}?q=${this.keyword}&from=${this.from}&to=${this.to}&language=${this.language}&sortBy=${this.sortBy}&pageSize=${this.pageSize}&apiKey=${this.apiKey}
     `;
     const req = new Request(url.trim());
 
-    return fetch(req, {
-      headers: header,
-    })
+    return fetch(req)
       .then((res) => this._getResponseData(res))
       .then((obj) => {
         this._cache = obj.articles;

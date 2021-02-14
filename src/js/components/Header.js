@@ -6,9 +6,10 @@ import {
 } from '../constants/MARKUP_SELECTORS';
 
 export default class Header {
-  constructor({ headerColor }, newsCardClass, mainApiClass, newsApiClass) {
+  constructor({ headerColor }, newsCardClass, mainApiClass, newsApiClass, rootPage) {
     this.headerColor = headerColor;
     this.page = PAGE;
+    this.rootPage = rootPage;
     this.cardClass = newsCardClass;
     this.apiClass = mainApiClass;
     this.newsApiClass = newsApiClass;
@@ -41,7 +42,7 @@ export default class Header {
       this.apiClass.signout()
         .then((res) => {
           console.log(res);
-          window.location.href = '../';
+          window.location.href = this.rootPage;
           this.userName = null;
           this.render(false, this.userName);
 

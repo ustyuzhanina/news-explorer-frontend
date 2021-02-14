@@ -14,13 +14,14 @@ import {
   NAVBAR_SHOW_MENU_BTN,
   NAVBAR,
 } from '../js/constants/MARKUP_SELECTORS';
+import { ROOT } from '../js/constants/ROOT';
 
 (function () {
   const newsApi = new NewsApi(NEWS_API_CONFIG);
   const mainApi = new MainApi(MAIN_API_CONFIG);
   const profilePage = new ProfilePage();
   const newsCard = new NewsCard(mainApi, profilePage);
-  const header = new Header({ headerColor: 'white' }, newsCard, mainApi, newsApi);
+  const header = new Header({ headerColor: 'white' }, newsCard, mainApi, newsApi, ROOT.articles);
   const cardList = new NewsCardList(newsCard, mainApi, newsApi);
 
   const savedArticles = [];

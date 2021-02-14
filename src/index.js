@@ -30,13 +30,14 @@ import {
   MAIN_API_ERROR,
   MONGO_ERROR,
 } from './js/constants/ERRORS';
+import { ROOT } from './js/constants/ROOT';
 
 (function () {
   const newsApi = new NewsApi(NEWS_API_CONFIG);
   const mainApi = new MainApi(MAIN_API_CONFIG);
   const profilePage = new ProfilePage();
   const newsCard = new NewsCard(mainApi, profilePage);
-  const header = new Header({ headerColor: 'transparent' }, newsCard, mainApi, newsApi);
+  const header = new Header({ headerColor: 'transparent' }, newsCard, mainApi, newsApi, ROOT.index);
   const cardList = new NewsCardList(newsCard, mainApi, newsApi);
   const form = new Form(newsApi, cardList);
   const popupRegister = new PopupRegister(form, POPUP_REGISTER);

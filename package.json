@@ -1,6 +1,6 @@
 {
   "name": "news-explorer-frontend",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Frontend for diploma news-explorer",
   "main": "./src/index.js",
   "scripts": {
