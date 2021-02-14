@@ -1,4 +1,4 @@
-const API_URL = 'https://newsapi.org/v2';
+const API_URL = 'https://nomoreparties.co/news/v2';
 const ENDPOINT = '/everything';
 const TODAY = new Date().toISOString().slice([0], [10]);
 const FROM_DAY = new Date();
