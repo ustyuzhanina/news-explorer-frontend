@@ -1,6 +1,8 @@
 .header {
   height: 40vw;
   max-width: 1440px;
+  width: 100%;
+  flex: 0 0 auto;
   display: block;
   margin: 0 auto;
   padding: 0;

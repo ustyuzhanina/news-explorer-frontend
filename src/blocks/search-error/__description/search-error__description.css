@@ -1,0 +1,13 @@
+.search-error__description {
+  margin: 16px 0 0;
+  font-family: 'Roboto', arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+  color: #B6BCBF;
+  display: inline-block;
+  text-align: center;
+  max-width: 923px;
+  width: 80%;
+}

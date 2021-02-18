@@ -1,6 +1,6 @@
 .card__image {
   object-fit: cover;
-  object-position: top center;
+  object-position: top left;
   margin: 0;
   padding: 0;
   width: 400px;
@@ -13,7 +13,6 @@
     height: calc(272px * 0.8);
   }
 }
-
 
 @media screen and (max-width: 920px) {
   .image {

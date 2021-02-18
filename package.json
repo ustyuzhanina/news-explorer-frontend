@@ -1,6 +1,6 @@
 {
   "name": "news-explorer-frontend",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Frontend for diploma news-explorer",
   "main": "./src/index.js",
   "scripts": {
@@ -50,7 +50,7 @@
   },
   "dependencies": {
     "babel-polyfill": "6.26.0",
-    "core-js": "3.1.4"
+    "core-js": "3.4.1"
   },
   "resolutions": {
     "image-webpack-loader/imagemin-pngquant": "5.0.1"
